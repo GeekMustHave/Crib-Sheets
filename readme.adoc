@@ -25,7 +25,11 @@ more description
 :keywords: GeekMustHave, keyword2, keyword3
 :email: GeekMustHave@PhoenixWorkgroup.com
 
-These are crib notes.  Every time I look something up more tha once I try to add it to this document.  Something simple.
+These are crib notes.  Every time I look something up more than once I try to add it to this document.  Something simple.
+
+The PDF version of this document is available at this link:./ReadMe.pdf[ Link]
+
+
 
 == MSAccess
 
@@ -120,6 +124,105 @@ For example, you may wish to show brackets/parentheses around a negative value
 
 link:https://sourcedaddy.com/ms-access/format-function.html[https://sourcedaddy.com/ms-access/format-function.html, window='_blank]
 
+=== Check if folder or file exists
+
+.Access detect file
+[source,javascript]
+----
+Function FileExists(ByVal strFile As String, Optional bFindFolders As Boolean) As Boolean
+    'Purpose:   Return True if the file exists, even if it is hidden.
+    'Arguments: strFile: File name to look for. Current directory searched if no path included.
+    '           bFindFolders. If strFile is a folder, FileExists() returns False unless this argument is True.
+    'Note:      Does not look inside subdirectories for the file.
+    'Author:    Allen Browne. http://allenbrowne.com June, 2006.
+    Dim lngAttributes As Long
+
+    'Include read-only files, hidden files, system files.
+    lngAttributes = (vbReadOnly Or vbHidden Or vbSystem)
+
+    If bFindFolders Then
+        lngAttributes = (lngAttributes Or vbDirectory) 'Include folders as well.
+    Else
+        'Strip any trailing slash, so Dir does not look inside the folder.
+        Do While Right$(strFile, 1) = "\"
+            strFile = Left$(strFile, Len(strFile) - 1)
+        Loop
+    End If
+
+    'If Dir() returns something, the file exists.
+    On Error Resume Next
+    FileExists = (Len(Dir(strFile, lngAttributes)) > 0)
+End Function
+
+Function FolderExists(strPath As String) As Boolean
+    On Error Resume Next
+    FolderExists = ((GetAttr(strPath) And vbDirectory) = vbDirectory)
+End Function
+
+Function TrailingSlash(varIn As Variant) As String
+    If Len(varIn) > 0 Then
+        If Right(varIn, 1) = "\" Then
+            TrailingSlash = varIn
+        Else
+            TrailingSlash = varIn & "\"
+        End If
+    End If
+End Function
+----
+
+=== Copy file
+
+.Access Copy File
+[source,javascript]
+----
+'---------------------------------------------------------------------------------------
+' Procedure : CopyFile
+' Author    : Daniel Pineault, CARDA Consultants Inc.
+' Website   : http://www.cardaconsultants.com
+' Purpose   : Copy a file
+'             Overwrites existing copy without prompting
+'             Cannot copy locked files (currently in use)
+' Copyright : The following is release as Attribution-ShareAlike 4.0 International
+'             (CC BY-SA 4.0) - https://creativecommons.org/licenses/by-sa/4.0/
+' Req'd Refs: None required
+'
+' Input Variables:
+' ~~~~~~~~~~~~~~~~
+' sSource - Path/Name of the file to be copied
+' sDest - Path/Name for copying the file to
+'
+' Revision History:
+' Rev       Date(yyyy/mm/dd)        Description
+' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' 1         2007-Apr-01             Initial Release
+'---------------------------------------------------------------------------------------
+Public Function CopyFile(sSource As String, sDest As String) As Boolean
+On Error GoTo CopyFile_Error
+ 
+    FileCopy sSource, sDest
+    CopyFile = True
+    Exit Function
+ 
+CopyFile_Error:
+    If Err.Number = 0 Then
+    ElseIf Err.Number = 70 Then
+        MsgBox "The file is currently in use and therfore is locked and cannot be copied at this" & _
+               " time.  Please ensure that no one is using the file and try again.", vbOKOnly, _
+               "File Currently in Use"
+    ElseIf Err.Number = 53 Then
+        MsgBox "The Source File '" & sSource & "' could not be found.  Please validate the" & _
+               " location and name of the specifed Source File and try again", vbOKOnly, _
+               "File Currently in Use"
+    Else
+        MsgBox "MS Access has generated the following error" & vbCrLf & vbCrLf & "Error Number: " & _
+               Err.Number & vbCrLf & "Error Source: CopyFile" & vbCrLf & _
+               "Error Description: " & Err.Description, vbCritical, "An Error has Occurred!"
+    End If
+    Exit Function
+End Function
+----
+link:https://www.devhut.net/2010/09/29/ms-access-vba-copy-a-file/[https://www.devhut.net/2010/09/29/ms-access-vba-copy-a-file/, window='_blank]
+
 
 === Hide second column in Combo box
 
@@ -139,9 +242,9 @@ The Alternative method which allows the column to be used is setting the first c
 
 
 
-=== Refresh form with new QueryDef SQL
+=== Refresh Subform with new QueryDef SQL
 
-You can't requery, you have to refresh the subform's source object:
+You can't requery, you have to refresh the subform source object:
 ----
 MySubformControl.SourceObject = ""
 MySubformControl.SourceObject = "Query.MyQuery"
@@ -505,6 +608,38 @@ select sum(case when FirstName IS NULL then 1 else 0 end) as NUMBER_OF_NULL_VALU
 
 Source: https://www.tutorialspoint.com/how-to-count-null-values-in-mysql
 
+=== Add a Auto Increment column to a table
+
+.Add Auto Increment
+[source,javascript]
+----
+ALTER TABLE ThreeSeasons ADD column id INT NOT NULL AUTO_INCREMENT unique first
+----
+
+=== Case (Select)
+
+The CASE statement goes through conditions and return a value when the first condition is met (like an IF-THEN-ELSE statement). 
+So, once a condition is true, it will stop reading and return the result.
+
+If no conditions are true, it will return the value in the ELSE clause.
+
+If there is no ELSE part and no conditions are true, it returns NULL.
+
+.Case
+[source,basic]
+----
+SELECT OrderID, Quantity,
+CASE
+    WHEN Quantity > 30 THEN "The quantity is greater than 30"
+    WHEN Quantity = 30 THEN "The quantity is 30"
+    ELSE "The quantity is under 30"
+END
+FROM OrderDetails;
+----
+
+
+
+
 == SQL Server
 
 === Concat
@@ -706,6 +841,63 @@ link:https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server
 
 
 == SQLite
+
+=== DSNLess ODBC connection
+
+----
+DRIVER=SQLite3 ODBC Driver;Database=c:\mydb.db;LongNames=0;Timeout=1000;NoTXN=0;SyncPragma=NORMAL;StepAPI=0;
+
+-- Zortero Example
+ODBC;DSN=Zotero;Database=C:\Users\{userDirectory}\Zotero\link_zotero.sqlite;StepAPI=0;SyncPragma=OFF;NoTXN=0;Timeout=;ShortNames=0;LongNames=0;NoCreat=0;NoWCHAR=0;FKSupport=0;JournalMode=;OEMCP=0;LoadExt=;BigInt=0;JDConv=0;;TABLE=collections
+----
+
+This is some VB code to create the DSNLess Connection
+
+.DSNLess VB Code
+[source,javascript]
+----
+'//Name     :   AttachDSNLessTable
+'//Purpose  :   Create a linked table to SQL Server without using a DSN
+'//Parameters
+'//     stLocalTableName: Name of the table that you are creating in the current database
+'//     stRemoteTableName: Name of the table that you are linking to on the SQL Server database
+'//     stServer: Name of the SQL Server that you are linking to
+'//     stDatabase: Name of the SQL Server database that you are linking to
+'//     stUsername: Name of the SQL Server user who can connect to SQL Server, leave blank to use a Trusted Connection
+'//     stPassword: SQL Server user password
+Function AttachDSNLessTable(stLocalTableName As String, stRemoteTableName As String, stServer As String, stDatabase As String, Optional stUsername As String, Optional stPassword As String)
+    On Error GoTo AttachDSNLessTable_Err
+    Dim td As TableDef
+    Dim stConnect As String
+
+For Each td In CurrentDb.TableDefs
+        If td.Name = stLocalTableName Then
+            CurrentDb.TableDefs.Delete stLocalTableName
+        End If
+    Next
+
+If Len(stUsername) = 0 Then
+        '//Use trusted authentication if stUsername is not supplied.
+        stConnect = "ODBC;DRIVER=SQL Server;SERVER=" & stServer & ";DATABASE=" & stDatabase & ";Trusted_Connection=Yes"
+    Else
+        '//WARNING: This will save the username and the password with the linked table information.
+        stConnect = "ODBC;DRIVER=SQL Server;SERVER=" & stServer & ";DATABASE=" & stDatabase & ";UID=" & stUsername & ";PWD=" & stPassword
+    End If
+    Set td = CurrentDb.CreateTableDef(stLocalTableName, dbAttachSavePWD, stRemoteTableName, stConnect)
+    CurrentDb.TableDefs.Append td
+    AttachDSNLessTable = True
+    Exit Function
+
+AttachDSNLessTable_Err:
+
+AttachDSNLessTable = False
+    MsgBox "AttachDSNLessTable encountered an unexpected error: " & Err.Description
+
+End Function
+----
+
+link:https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table[https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table, window='_blank]
+
 
 
 
