@@ -1,6 +1,6 @@
 = Crib Sheets
 John Schuster <John.schuster@PhoenixWorkgroup.com>
-v2.1b, 02/06/2020: Ceib Sheet
+v2.1b, 02/06/2020: Crib Sheet
 :Author: John HR Schuster
 :Company: Phoenix Workgroup Computing LLC
 :toc: left
@@ -25,8 +25,7 @@ more description
 :keywords: GeekMustHave, keyword2, keyword3
 :email: GeekMustHave@PhoenixWorkgroup.com
 
-These are crib notes.  Everytime I look something up more tha once I try to add
-it to this document
+These are crib notes.  Every time I look something up more tha once I try to add it to this document.  Something simple.
 
 == MSAccess
 
@@ -38,7 +37,8 @@ The Microsoft Access Mid function extracts a substring from a string (starting a
 Mid ( text, start_position, [number_of_characters] )
 ----
 
-Source:  https://www.techonthenet.com/access/functions/string/mid.php
+link:https://www.techonthenet.com/access/functions/string/mid.php[https://www.techonthenet.com/access/functions/string/mid.php, window='_blank]
+
 
 === Format values
 
@@ -96,12 +96,12 @@ For example, you may wish to show brackets/parentheses around a negative value
 |#	|Digit placeholder. This displays a digit or nothing. It works the same as the preceding zero placeholder, except that leading and trailing zeros are not displayed. For example, 0.75 would be displayed using zero placeholders, but this would be .75 using # placeholders.
 |.Decimal point.	|Only one permitted per format string. This character depends on the settings in the Windows Control Panel.
 |%	|Percentage placeholder. Multiplies number by 100 and places % character where it appears in the format string.
-|,	|Thousand separator. This is used if 0 or # placeholders are used and the format string contains a comma. One comma to the left of the decimal point means to round to the nearest thousand (e.g., ##0,). Two adjacent commas to the left of the thousand separator indicate rounding to the nearest million (e.g., ##0,,).
+|,	|Thousand separator. This is used if 0 or # placeholders are used and the format string contains a comma. One comma to the left of the decimal point means to round to the nearest thousand (e.g., 0,). Two adjacent commas to the left of the thousand separator indicate rounding to the nearest million (e.g., 0,,).
 
 |E- E+	|Scientific format. This displays the number exponentially.
 |:	|Time separator-used when formatting a time to split hours, minutes, and seconds.
 |/	|Date separator-this is used when specifying a format for a date.
-|- + � $ ( )	|Displays a literal character. To display a character other than listed here, precede it with a backslash (\).
+|- +  $ ( )	|Displays a literal character. To display a character other than listed here, precede it with a backslash (\).
 |===
 
 
@@ -118,11 +118,14 @@ For example, you may wish to show brackets/parentheses around a negative value
 |Short Time	|Displays a time using 24-hour format (e.g., 18:10).
 |===
 
-Source: https://sourcedaddy.com/ms-access/format-function.html
+link:https://sourcedaddy.com/ms-access/format-function.html[https://sourcedaddy.com/ms-access/format-function.html, window='_blank]
+
 
 === Hide second column in Combo box
 
 In Visual Basic, the ColumnWidth property setting is an Integer value that represents the column width in twips. You can specify a width or use one of the following predefined settings.
+
+NOTE: When you use a `0` as a ColumnWidth, that columns is not available  in vba.
 
 .Special ColmnWidth Values
 [cols="1,8", options='header']
@@ -131,6 +134,10 @@ In Visual Basic, the ColumnWidth property setting is an Integer value that repre
 |0	|Hides the column.
 |1	|(Default) Sizes the column to the default width.
 |===
+
+The Alternative method which allows the column to be used is setting the first columns width to something like `5"`
+
+
 
 === Refresh form with new QueryDef SQL
 
@@ -194,7 +201,7 @@ Public Sub SetFieldDescription(strTableName As String, _
 End Sub
 ----
 
-Source: https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html
+link:https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html[https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html, window='_blank]
 
 === Turn off datasheet Sort/Filter
 
@@ -253,12 +260,13 @@ PROC_ERR:
 End Function
 ----
 
-Source: http://www.fmsinc.com/microsoftaccess/databasesplitter/
+link:http://www.fmsinc.com/microsoftaccess/databasesplitter/[http://www.fmsinc.com/microsoftaccess/databasesplitter/, window='_blank]
+
 
 
 === Sort Hidden properties of datasheet
 
-The properties in Access related to datasheets.
+The properties in Access related to datasheet.
 
 [cols="2,8", options='header']
 .Hidden Properties
@@ -286,7 +294,7 @@ The properties in Access related to datasheets.
 
 With the exception of the Subdatasheet properties, 
 you have no direct design-time access to these properties: 
-None of these properties show up in the datasheet's property sheet.
+None of these properties show up in the datasheet property sheet.
 As a result, they can only be set at runtime from VBA code in order to make changes. 
 Interestingly, none of the properties are exposed by ADO or ADOX, so if you want to change them, 
 you'll have to use DAO.
@@ -297,7 +305,7 @@ For full control over the datasheet, though,
 you'll want to explicitly set the properties in code and save the object when you're done.
 
 It's worth noting that a datasheet is a form�it says so right in the object browser. 
-The object browser considers the datasheet's columns to be the controls on the form. 
+The object browser considers the datasheet columns to be the controls on the form. 
 As a result, a datasheet can consist of any control that can be displayed, 
 which means all TextBox, ComboBox, and CheckBox controls.
 
