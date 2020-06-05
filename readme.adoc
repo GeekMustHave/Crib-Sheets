@@ -663,6 +663,26 @@ CAST(expression AS datatype(length))
 Technical Details
 |===
 
+=== Round
+.Round
+[source,javascript]
+----
+ROUND(number, decimals, operation)
+
+-- Round number to nearest decimal 
+round(DIHTA.ValueIS, 0, 0)
+----
+
+.Round arguments
+[cols='1,8' options='header']
+|===
+|Parameter	|Description
+|number	|Required. The number to be rounded
+|decimals	|Required. The number of decimal places to round number to
+|operation	|Optional. If 0, it rounds the result to the number of decimal. If another value than 0, it truncates the result to the number of decimals. Default value is 0
+|===
+
+
 === Find string within a string
 
 ----
