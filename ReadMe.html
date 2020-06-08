@@ -450,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_msaccess">1. MSAccess</a>
 <ul class="sectlevel2">
 <li><a href="#_substring_mid">1.1. Substring (MID)</a></li>
-<li><a href="#_format_values">1.2. Format values</a></li>
+<li><a href="#_date_difference_datedif">1.2. Date Difference (DateDif)</a></li>
 <li><a href="#_check_if_folder_or_file_exists">1.3. Check if folder or file exists</a></li>
 <li><a href="#_copy_file">1.4. Copy file</a></li>
 <li><a href="#_hide_second_column_in_combo_box">1.5. Hide second column in Combo box</a></li>
@@ -458,17 +458,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_convert_expression_to_data_type_c">1.7. Convert expression to data type ( C )</a></li>
 <li><a href="#_creating_user_properties_tables_queries">1.8. Creating User Properties (Tables / Queries)</a></li>
 <li><a href="#_turn_off_datasheet_sortfilter">1.9. Turn off datasheet Sort/Filter</a></li>
-<li><a href="#_requery_a_form_from_another_form">1.10. Requery a form from another form</a></li>
-<li><a href="#_relinking_table_vba">1.11. Relinking table VBA</a></li>
-<li><a href="#_sort_hidden_properties_of_datasheet">1.12. Sort Hidden properties of datasheet</a></li>
-<li><a href="#_change_hide_show_of_a_field_on_datasheet">1.13. Change Hide / Show of a field on datasheet</a></li>
-<li><a href="#_select_case_if_then_else">1.14. Select Case (If-Then-Else)</a></li>
-<li><a href="#_access_columns_of_combo_control">1.15. Access columns of Combo control</a></li>
-<li><a href="#_set_filter_on_subform_from_main_form">1.16. Set Filter on Subform from Main Form</a></li>
-<li><a href="#_reset_query_column_order_setting">1.17. Reset query Column Order setting</a></li>
-<li><a href="#_open_dynaset_change_sql">1.18. Open Dynaset, change SQL</a></li>
-<li><a href="#_open_recordset_add_row">1.19. Open recordset, add row</a></li>
-<li><a href="#_select_cased_statement_vba">1.20. Select Cased Statement (VBA)</a></li>
+<li><a href="#_determine_the_current_object">1.10. Determine the Current Object</a></li>
+<li><a href="#_update_lastupdated_and_updatedby">1.11. Update LastUpdated and UpdatedBy</a></li>
+<li><a href="#_determine_current_subroutine">1.12. Determine Current subroutine</a></li>
+<li><a href="#_requery_a_form_from_another_form">1.13. Requery a form from another form</a></li>
+<li><a href="#_relinking_table_vba">1.14. Relinking table VBA</a></li>
+<li><a href="#_sort_hidden_properties_of_datasheet">1.15. Sort Hidden properties of datasheet</a></li>
+<li><a href="#_change_hide_show_of_a_field_on_datasheet">1.16. Change Hide / Show of a field on datasheet</a></li>
+<li><a href="#_select_case_if_then_else">1.17. Select Case (If-Then-Else)</a></li>
+<li><a href="#_access_columns_of_combo_control">1.18. Access columns of Combo control</a></li>
+<li><a href="#_set_filter_on_subform_from_main_form">1.19. Set Filter on Subform from Main Form</a></li>
+<li><a href="#_reset_query_column_order_setting">1.20. Reset query Column Order setting</a></li>
+<li><a href="#_open_dynaset_change_sql">1.21. Open Dynaset, change SQL</a></li>
+<li><a href="#_open_recordset_add_row">1.22. Open recordset, add row</a></li>
+<li><a href="#_select_cased_statement_vba">1.23. Select Cased Statement (VBA)</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -479,6 +482,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_count_nulls">2.4. Count nulls</a></li>
 <li><a href="#_add_a_auto_increment_column_to_a_table">2.5. Add a Auto Increment column to a table</a></li>
 <li><a href="#_case_select">2.6. Case (Select)</a></li>
+<li><a href="#_dba_display_all_columns_of_tables_in_db">2.7. DBA Display all columns of Tables in DB</a></li>
 </ul>
 </li>
 <li><a href="#_sql_server">3. SQL Server</a>
@@ -489,7 +493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_find_string_within_a_string">3.4. Find string within a string</a></li>
 <li><a href="#_create_table_select">3.5. Create Table Select</a></li>
 <li><a href="#_if_then_else">3.6. IF then else</a></li>
-<li><a href="#_immediat_if_iif">3.7. Immediat If (IIF)</a></li>
+<li><a href="#_immediate_if_iif">3.7. Immediate If (IIF)</a></li>
 <li><a href="#_variables">3.8. Variables</a></li>
 <li><a href="#_substring_substr">3.9. Substring (Substr)</a></li>
 <li><a href="#_update_with_a_join">3.10. Update with a Join</a></li>
@@ -542,183 +546,183 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_format_values">1.2. Format values</h3>
+<h3 id="_date_difference_datedif">1.2. Date Difference (DateDif)</h3>
 <div class="paragraph">
-<p>The Format function does exactly the same thing as formatting a number or a date within a cell in a spreadsheet,
-except it does so from within the code itself. If you wish to display a number in a message box or on a user form,
-this function is very useful for making it readable, particularly if it is a large number</p>
+<p>The DateDiff() function returns the difference between two dates.</p>
 </div>
 <div class="listingblock">
-<div class="title">Examples</div>
+<div class="title">DateDiff</div>
 <div class="content">
-<pre>Format(1234567.89, "#,###.#")
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">DateDiff(datepart, date1, date2, firstdayofweek, firstweekofyear)
 
-format(([On_Hand]-[Qty_Needed]), "#,##0[Black];(#,##0)[Red];0;0")
-
-sReturn = Format(sValueIS, "$###,###,###,##0[Black];($###,###,###,##0)[Red];;")</pre>
+'*--- Return the difference between two dates, in years:
+SELECT DateDiff("yyyy", #13/01/1998#, #09/05/2017#);</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Predefined Formats</caption>
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Format Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">General Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display the number as is.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Currency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display the number with currency symbol. Use thousand separator.
-Enclose in brackets if negative. Display to two decimal places.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display at least one digit to the left and two digits to the right of the decimal point.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Standard</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display number with thousand separator. Display to two decimal places.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Percent</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display number multiplied by 100 with a percent sign (%) appended after. Display to two decimal places.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Scientific</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Use standard scientific notation.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes/No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display No if number is 0; otherwise, display Yes.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">True/False</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display False if number is 0; otherwise, display True.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">On/Off</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display Off if number is 0; otherwise, display On.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">datepart</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. The part to return. Can be one of the following values:</p>
+<p class="tableblock">* yyyy = Year
+. q = Quarter
+. m = month
+. y = Day of the year
+. d = Day
+. w = Weekday
+. ww = Week
+. h = hour
+. n = Minute
+. s = Second</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>A number of characters can be used to define a user-defined format, as shown below.
+<p>date1 and date2	Required. The two dates to calculate the difference between
+firstdayofweek	Optional. Specifies the first day of the week. Can be one of the following values:
+0 = Use the NLS API setting
+1 = Sunday (this is default)
+2 = Monday
+3 = Tuesday
+4 = Wednesday
+5 = Thursday
+6 = Friday
+7 = Saturday
+firstdayofyear	Optional. Specifies the first week of the year. Can be one of the following values:
+0 = Use the NLS API setting
+1 = Use the first week that includes Jan 1st (default)
+2 = Use the first week in the year that has at least 4 days
+3 = Use the first full week of the year</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.w3schools.com/sql/func_msaccess_datediff.asp" target="'_blank">https://www.w3schools.com/sql/func_msaccess_datediff.asp</a></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">General Date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays date based on your system settings
+Long Date	Displays date based on your system&#8217;s long date setting
+Medium Date	Displays date based on your system&#8217;s medium date setting
+Short Date	Displays date based on your system&#8217;s short date setting
+Long Time	Displays time based on your system&#8217;s long time setting
+Medium Time	Displays time based on your system&#8217;s medium time setting
+Short Time	Displays time based on your system&#8217;s short time setting</p>
+<p class="tableblock"><a href="https://www.techonthenet.com/access/functions/date/format.php" target="'_blank">https://www.techonthenet.com/access/functions/date/format.php</a></p>
+<p class="tableblock">=== Format values</p>
+<p class="tableblock">The Format function does exactly the same thing as formatting a number or a date within a cell in a spreadsheet,
+except it does so from within the code itself. If you wish to display a number in a message box or on a user form,
+this function is very useful for making it readable, particularly if it is a large number</p>
+<p class="tableblock">.Examples
+----
+Format(1234567.89, "<mark>,<mark></mark>.<mark>")</p>
+<p class="tableblock">format(([On_Hand]-[Qty_Needed]), "</mark>,</mark>0[Black];(<mark>,<mark>0)[Red];0;0")</p>
+<p class="tableblock">sReturn = Format(sValueIS, "$</mark></mark>,<mark><mark>,</mark></mark>,<mark>0[Black];($</mark><mark>,<mark></mark>,</mark><mark>,</mark>#0)[Red];;")
+----</p>
+<p class="tableblock">[cols="2,8", options='header']
+.Predefined Formats</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>|Format Name	|Description
+|General Number	|Display the number as is.
+|Currency	|Display the number with currency symbol. Use thousand separator.
+Enclose in brackets if negative. Display to two decimal places.
+|Fixed	|Display at least one digit to the left and two digits to the right of the decimal point.
+|Standard	|Display number with thousand separator. Display to two decimal places.
+|Percent	|Display number multiplied by 100 with a percent sign (%) appended after. Display to two decimal places.
+|Scientific	|Use standard scientific notation.
+|Yes/No	|Display No if number is 0; otherwise, display Yes.
+|True/False	|Display False if number is 0; otherwise, display True.
+|On/Off	|Display Off if number is 0; otherwise, display On.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A number of characters can be used to define a user-defined format, as shown below.
 The format string can have up to four sections separated by semicolons (;).
 This is so different formats can be applied to different values, such as to positive and negative numbers.
 For example, you may wish to show brackets/parentheses around a negative value</p>
+<p class="tableblock">.Section	Detail
+[cols="2,8", options='header']</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>|Number of Sections | Formatting
+|One section only	|Applies to all values
+|Two sections	|First section for positive values, second section for negative values
+|Three sections	|First section for positive values, second section for negative values, third section for zeros
+|Four sections	|First section for positive values, second section for negative values, third section for zeros, fourth section for null values</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Section	Detail</caption>
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 100%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Number of Sections</th>
-<th class="tableblock halign-left valign-top">Formatting</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One section only</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Applies to all values</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Two sections</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">First section for positive values, second section for negative values</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Three sections</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">First section for positive values, second section for negative values, third section for zeros</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Four sections</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">First section for positive values, second section for negative values, third section for zeros, fourth section for null values</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">.User-Defined Formats
+[cols="2,8", options='header']</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>|Character	|Description
+|Null String	|No formatting.
+|0	|Digit placeholder. Displays a digit or a zero. If there is a digit for that position, then it displays the digit; otherwise, it displays 0. If there are fewer digits than zeros, you will get leading or trailing zeros. If there are more digits after the decimal point than there are zeros, then the number is rounded to the number of decimal places shown by the zeros. If there are more digits before the decimal point than zeros, these will be displayed normally.
+|#	|Digit placeholder. This displays a digit or nothing. It works the same as the preceding zero placeholder, except that leading and trailing zeros are not displayed. For example, 0.75 would be displayed using zero placeholders, but this would be .75 using # placeholders.
+|.Decimal point.	|Only one permitted per format string. This character depends on the settings in the Windows Control Panel.
+|%	|Percentage placeholder. Multiplies number by 100 and places % character where it appears in the format string.
+|,	|Thousand separator. This is used if 0 or # placeholders are used and the format string contains a comma. One comma to the left of the decimal point means to round to the nearest thousand (e.g., 0,). Two adjacent commas to the left of the thousand separator indicate rounding to the nearest million (e.g., 0,,).</p>
+</div>
+<div class="paragraph">
+<p>|E- E+	|Scientific format. This displays the number exponentially.
+|:	|Time separator-used when formatting a time to split hours, minutes, and seconds.
+|/	|Date separator-this is used when specifying a format for a date.
+|- +  $ ( )	|Displays a literal character. To display a character other than listed here, precede it with a backslash (\).</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. User-Defined Formats</caption>
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 100%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Character</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Null String</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No formatting.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Digit placeholder. Displays a digit or a zero. If there is a digit for that position, then it displays the digit; otherwise, it displays 0. If there are fewer digits than zeros, you will get leading or trailing zeros. If there are more digits after the decimal point than there are zeros, then the number is rounded to the number of decimal places shown by the zeros. If there are more digits before the decimal point than zeros, these will be displayed normally.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">#</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Digit placeholder. This displays a digit or nothing. It works the same as the preceding zero placeholder, except that leading and trailing zeros are not displayed. For example, 0.75 would be displayed using zero placeholders, but this would be .75 using # placeholders.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">.Decimal point.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Only one permitted per format string. This character depends on the settings in the Windows Control Panel.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Percentage placeholder. Multiplies number by 100 and places % character where it appears in the format string.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">,</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Thousand separator. This is used if 0 or # placeholders are used and the format string contains a comma. One comma to the left of the decimal point means to round to the nearest thousand (e.g., 0,). Two adjacent commas to the left of the thousand separator indicate rounding to the nearest million (e.g., 0,,).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">E- E+</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Scientific format. This displays the number exponentially.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time separator-used when formatting a time to split hours, minutes, and seconds.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Date separator-this is used when specifying a format for a date.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">- +  $ ( )</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Displays a literal character. To display a character other than listed here, precede it with a backslash (\).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">.Predefined Date and Time Formats
+[cols="2,5", options='header']</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>|Format Name	|Description
+|General Date	|Display a date and/or time. For real numbers, display date and time.
+Integer numbers display time only. If there is no integer part, then display only time.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Predefined Date and Time Formats</caption>
 <colgroup>
-<col style="width: 28.5714%;">
-<col style="width: 71.4286%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Format Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">General Date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Display a date and/or time. For real numbers, display date and time. Integer numbers display time only. If there is no integer part, then display only time.</p></td>
-</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Long Date</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Displays a long date as defined in the international settings of the Windows Control Panel.</p></td>
@@ -870,7 +874,7 @@ When you use a <code>0</code> as a ColumnWidth, that columns is not available  i
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Special ColmnWidth Values</caption>
+<caption class="title">Table 1. Special ColmnWidth Values</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -1035,7 +1039,47 @@ Be warned though that this will disable all shortcuts for the form and not just 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_requery_a_form_from_another_form">1.10. Requery a form from another form</h3>
+<h3 id="_determine_the_current_object">1.10. Determine the Current Object</h3>
+<div class="paragraph">
+<p>The CurrentObjectName property is set by Microsoft Access to a string expression containing the name of the active object.</p>
+</div>
+<div class="listingblock">
+<div class="title">Current Object</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript"> intCurrentType = Application.CurrentObjectType
+ strCurrentName = Application.CurrentObjectName</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_lastupdated_and_updatedby">1.11. Update LastUpdated and UpdatedBy</h3>
+<div class="paragraph">
+<p>These two fields are used in most my code to show when the row was last touched by someone.</p>
+</div>
+<div class="listingblock">
+<div class="title">Update Audit</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">Private Sub Form_BeforeUpdate(Cancel As Integer)
+    '*--- TimeStanp any change
+    Me.LastUpdated = Now()
+    Me.UpdatedBy = SetUserName()
+End Sub</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_determine_current_subroutine">1.12. Determine Current subroutine</h3>
+<div class="listingblock">
+<div class="title">Current sub</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">    msgbox  Application.VBE.ActiveCodePane.CodeModule)
+    '*--- will return something like
+    '* Form_frmIMMTemplateImport</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requery_a_form_from_another_form">1.13. Requery a form from another form</h3>
 <div class="listingblock">
 <div class="content">
 <pre>e.dirty = false
@@ -1047,7 +1091,7 @@ Forms!frmLegacy.Requery</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_relinking_table_vba">1.11. Relinking table VBA</h3>
+<h3 id="_relinking_table_vba">1.14. Relinking table VBA</h3>
 <div class="listingblock">
 <div class="content">
 <pre>Function ReLinkTable(strTable As String, strPath As String) As Boolean
@@ -1092,12 +1136,12 @@ End Function</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sort_hidden_properties_of_datasheet">1.12. Sort Hidden properties of datasheet</h3>
+<h3 id="_sort_hidden_properties_of_datasheet">1.15. Sort Hidden properties of datasheet</h3>
 <div class="paragraph">
 <p>The properties in Access related to datasheet.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. Hidden Properties</caption>
+<caption class="title">Table 2. Hidden Properties</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 80%;">
@@ -1208,7 +1252,7 @@ which means all TextBox, ComboBox, and CheckBox controls.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_change_hide_show_of_a_field_on_datasheet">1.13. Change Hide / Show of a field on datasheet</h3>
+<h3 id="_change_hide_show_of_a_field_on_datasheet">1.16. Change Hide / Show of a field on datasheet</h3>
 <div class="paragraph">
 <p>The code to show and hide the columns is in a routine called ShowHideColumn.</p>
 </div>
@@ -1232,7 +1276,7 @@ End Function</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_select_case_if_then_else">1.14. Select Case (If-Then-Else)</h3>
+<h3 id="_select_case_if_then_else">1.17. Select Case (If-Then-Else)</h3>
 <div class="paragraph">
 <p>The Microsoft Access Case statement can only be used in VBA code. It has the functionality of an IF-THEN-ELSE statement.</p>
 </div>
@@ -1259,7 +1303,7 @@ End Select</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_access_columns_of_combo_control">1.15. Access columns of Combo control</h3>
+<h3 id="_access_columns_of_combo_control">1.18. Access columns of Combo control</h3>
 <div class="paragraph">
 <p>Use 0 to refer to the first column, 1 to refer to the second column,
 and so on. Use 0 to refer to the first row, 1 to refer to the second row,
@@ -1284,7 +1328,7 @@ End If</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_set_filter_on_subform_from_main_form">1.16. Set Filter on Subform from Main Form</h3>
+<h3 id="_set_filter_on_subform_from_main_form">1.19. Set Filter on Subform from Main Form</h3>
 <div class="listingblock">
 <div class="content">
 <pre>'*--- lstBoxSheets is the subForm
@@ -1294,7 +1338,7 @@ Me.LstBoxSheets.Form.FilterOn = True</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_reset_query_column_order_setting">1.17. Reset query Column Order setting</h3>
+<h3 id="_reset_query_column_order_setting">1.20. Reset query Column Order setting</h3>
 <div class="paragraph">
 <p>So, when you open a query in Datasheet view, and the column order has not been messed with and saved,
 the column order displayed is determined by the OrdinalPosition and the value of that property corresponds
@@ -1324,11 +1368,11 @@ End Sub</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_open_dynaset_change_sql">1.18. Open Dynaset, change SQL</h3>
+<h3 id="_open_dynaset_change_sql">1.21. Open Dynaset, change SQL</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_open_recordset_add_row">1.19. Open recordset, add row</h3>
+<h3 id="_open_recordset_add_row">1.22. Open recordset, add row</h3>
 <div class="listingblock">
 <div class="content">
 <pre>Dim dbCurrent As Database
@@ -1357,7 +1401,7 @@ Dim sSQL As String
 </div>
 </div>
 <div class="sect2">
-<h3 id="_select_cased_statement_vba">1.20. Select Cased Statement (VBA)</h3>
+<h3 id="_select_cased_statement_vba">1.23. Select Cased Statement (VBA)</h3>
 <div class="listingblock">
 <div class="content">
 <pre>Select Case test_expression
@@ -1463,6 +1507,26 @@ FROM OrderDetails;</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_dba_display_all_columns_of_tables_in_db">2.7. DBA Display all columns of Tables in DB</h3>
+<div class="listingblock">
+<div class="title">MySQL Column List</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">select
+    tab.name as table_name,
+    col.column_id,
+    col.name as column_name,
+    t.name as data_type,
+    col.max_length,
+    col.precision
+from sys.tables as tab
+    inner join sys.columns as col
+        on tab.object_id = col.object_id
+    left join sys.types as t
+    on col.user_type_id = t.user_type_id</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1484,7 +1548,7 @@ FROM OrderDetails;</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Parameter Values</caption>
+<caption class="title">Table 3. Parameter Values</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1518,11 +1582,11 @@ Technical Details</p></td>
 <pre class="highlight"><code class="language-javascript" data-lang="javascript">ROUND(number, decimals, operation)
 
 -- Round number to nearest decimal
-round(DIHTA.ValueIS, 0, 0)</code></pre>
+round(DIHTA.ValueIS, 0, 1)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Round arguments</caption>
+<caption class="title">Table 4. Round arguments</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -1593,7 +1657,7 @@ from dbo.Pre_Migration_Guide</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_immediat_if_iif">3.7. Immediat If (IIF)</h3>
+<h3 id="_immediate_if_iif">3.7. Immediate If (IIF)</h3>
 <div class="listingblock">
 <div class="content">
 <pre>IIF(condition, value_if_true, value_if_false)</pre>
@@ -1839,7 +1903,7 @@ End Function</code></pre>
 <h2 id="_document_history">6. Document History</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. Document History</caption>
+<caption class="title">Table 5. Document History</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 16.6666%;">
@@ -1869,7 +1933,7 @@ End Function</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-06-05 12:34:20 -0400
+Last updated 2020-06-08 14:09:02 -0400
 </div>
 </div>
 </body>

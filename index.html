@@ -485,17 +485,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_concat">3.1. Concat</a></li>
 <li><a href="#_cast_number_into_string">3.2. Cast Number into string</a></li>
-<li><a href="#_find_string_within_a_string">3.3. Find string within a string</a></li>
-<li><a href="#_create_table_select">3.4. Create Table Select</a></li>
-<li><a href="#_if_then_else">3.5. IF then else</a></li>
-<li><a href="#_immediat_if_iif">3.6. Immediat If (IIF)</a></li>
-<li><a href="#_variables">3.7. Variables</a></li>
-<li><a href="#_substring_substr">3.8. Substring (Substr)</a></li>
-<li><a href="#_update_with_a_join">3.9. Update with a Join</a></li>
-<li><a href="#_charindex_instr">3.10. Charindex (InStr)</a></li>
-<li><a href="#_len_length_of_string">3.11. Len (Length) of string</a></li>
-<li><a href="#_copy_table">3.12. Copy Table</a></li>
-<li><a href="#_parameters_in_sp">3.13. Parameters in SP</a></li>
+<li><a href="#_round">3.3. Round</a></li>
+<li><a href="#_find_string_within_a_string">3.4. Find string within a string</a></li>
+<li><a href="#_create_table_select">3.5. Create Table Select</a></li>
+<li><a href="#_if_then_else">3.6. IF then else</a></li>
+<li><a href="#_immediat_if_iif">3.7. Immediat If (IIF)</a></li>
+<li><a href="#_variables">3.8. Variables</a></li>
+<li><a href="#_substring_substr">3.9. Substring (Substr)</a></li>
+<li><a href="#_update_with_a_join">3.10. Update with a Join</a></li>
+<li><a href="#_charindex_instr">3.11. Charindex (InStr)</a></li>
+<li><a href="#_len_length_of_string">3.12. Len (Length) of string</a></li>
+<li><a href="#_copy_table">3.13. Copy Table</a></li>
+<li><a href="#_parameters_in_sp">3.14. Parameters in SP</a></li>
 </ul>
 </li>
 <li><a href="#_sqlite">4. SQLite</a>
@@ -1510,7 +1511,46 @@ Technical Details</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_find_string_within_a_string">3.3. Find string within a string</h3>
+<h3 id="_round">3.3. Round</h3>
+<div class="listingblock">
+<div class="title">Round</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">ROUND(number, decimals, operation)
+
+-- Round number to nearest decimal
+round(DIHTA.ValueIS, 0, 0)</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. Round arguments</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 88.8889%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. The number to be rounded</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">decimals</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required. The number of decimal places to round number to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">operation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional. If 0, it rounds the result to the number of decimal. If another value than 0, it truncates the result to the number of decimals. Default value is 0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_find_string_within_a_string">3.4. Find string within a string</h3>
 <div class="listingblock">
 <div class="content">
 <pre>SELECT CHARINDEX('t', 'Customer') AS MatchPosition;</pre>
@@ -1518,7 +1558,7 @@ Technical Details</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_create_table_select">3.4. Create Table Select</h3>
+<h3 id="_create_table_select">3.5. Create Table Select</h3>
 <div class="paragraph">
 <p>The SELECT INTO statement copies data from one table into a new table.</p>
 </div>
@@ -1542,7 +1582,7 @@ from dbo.Pre_Migration_Guide</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_if_then_else">3.5. IF then else</h3>
+<h3 id="_if_then_else">3.6. IF then else</h3>
 <div class="listingblock">
 <div class="content">
 <pre>IF Boolean_expression
@@ -1553,7 +1593,7 @@ from dbo.Pre_Migration_Guide</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_immediat_if_iif">3.6. Immediat If (IIF)</h3>
+<h3 id="_immediat_if_iif">3.7. Immediat If (IIF)</h3>
 <div class="listingblock">
 <div class="content">
 <pre>IIF(condition, value_if_true, value_if_false)</pre>
@@ -1561,7 +1601,7 @@ from dbo.Pre_Migration_Guide</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_variables">3.7. Variables</h3>
+<h3 id="_variables">3.8. Variables</h3>
 <div class="listingblock">
 <div class="content">
 <pre>-- Declare a variable with a data type
@@ -1594,7 +1634,7 @@ WHERE
 </div>
 </div>
 <div class="sect2">
-<h3 id="_substring_substr">3.8. Substring (Substr)</h3>
+<h3 id="_substring_substr">3.9. Substring (Substr)</h3>
 <div class="listingblock">
 <div class="content">
 <pre>SELECT
@@ -1612,7 +1652,7 @@ ORDER BY
 </div>
 </div>
 <div class="sect2">
-<h3 id="_update_with_a_join">3.9. Update with a Join</h3>
+<h3 id="_update_with_a_join">3.10. Update with a Join</h3>
 <div class="listingblock">
 <div class="content">
 <pre>UPDATE
@@ -1630,7 +1670,7 @@ WHERE
 </div>
 </div>
 <div class="sect2">
-<h3 id="_charindex_instr">3.10. Charindex (InStr)</h3>
+<h3 id="_charindex_instr">3.11. Charindex (InStr)</h3>
 <div class="listingblock">
 <div class="content">
 <pre>SELECT
@@ -1648,7 +1688,7 @@ ORDER BY
 </div>
 </div>
 <div class="sect2">
-<h3 id="_len_length_of_string">3.11. Len (Length) of string</h3>
+<h3 id="_len_length_of_string">3.12. Len (Length) of string</h3>
 <div class="listingblock">
 <div class="content">
 <pre>SELECT
@@ -1666,7 +1706,7 @@ ORDER BY
 </div>
 </div>
 <div class="sect2">
-<h3 id="_copy_table">3.12. Copy Table</h3>
+<h3 id="_copy_table">3.13. Copy Table</h3>
 <div class="paragraph">
 <p>The SELECT INTO statement copies data from one table into a new table.</p>
 </div>
@@ -1686,7 +1726,7 @@ WHERE condition;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_parameters_in_sp">3.13. Parameters in SP</h3>
+<h3 id="_parameters_in_sp">3.14. Parameters in SP</h3>
 <div class="paragraph">
 <p>Create a  query torepeatedly to get the data for different sales people,
 you could instead parameterize the query and turn it into a stored procedure like:</p>
@@ -1799,7 +1839,7 @@ End Function</code></pre>
 <h2 id="_document_history">6. Document History</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Document History</caption>
+<caption class="title">Table 9. Document History</caption>
 <colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 16.6666%;">
@@ -1829,7 +1869,7 @@ End Function</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-06-04 16:21:03 -0400
+Last updated 2020-06-05 12:34:20 -0400
 </div>
 </div>
 </body>

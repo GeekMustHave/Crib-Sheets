@@ -43,6 +43,65 @@ Mid ( text, start_position, [number_of_characters] )
 
 link:https://www.techonthenet.com/access/functions/string/mid.php[https://www.techonthenet.com/access/functions/string/mid.php, window='_blank]
 
+=== Date Difference (DateDif)
+
+The DateDiff() function returns the difference between two dates.
+
+.DateDiff
+[source,javascript]
+----
+DateDiff(datepart, date1, date2, firstdayofweek, firstweekofyear)
+
+'*--- Return the difference between two dates, in years:
+SELECT DateDiff("yyyy", #13/01/1998#, #09/05/2017#);
+----
+
+|===
+|Parameter	|Description
+|datepart	|Required. The part to return. Can be one of the following values:
+
+* yyyy = Year
+. q = Quarter
+. m = month
+. y = Day of the year
+. d = Day
+. w = Weekday
+. ww = Week
+. h = hour
+. n = Minute
+. s = Second
+|===
+date1 and date2	Required. The two dates to calculate the difference between
+firstdayofweek	Optional. Specifies the first day of the week. Can be one of the following values:
+0 = Use the NLS API setting
+1 = Sunday (this is default)
+2 = Monday
+3 = Tuesday
+4 = Wednesday
+5 = Thursday
+6 = Friday
+7 = Saturday
+firstdayofyear	Optional. Specifies the first week of the year. Can be one of the following values:
+0 = Use the NLS API setting
+1 = Use the first week that includes Jan 1st (default)
+2 = Use the first week in the year that has at least 4 days
+3 = Use the first full week of the year
+
+link:https://www.w3schools.com/sql/func_msaccess_datediff.asp[https://www.w3schools.com/sql/func_msaccess_datediff.asp, window='_blank]
+
+|===
+|Format	|Explanation
+|General Date	|Displays date based on your system settings
+Long Date	Displays date based on your system's long date setting
+Medium Date	Displays date based on your system's medium date setting
+Short Date	Displays date based on your system's short date setting
+Long Time	Displays time based on your system's long time setting
+Medium Time	Displays time based on your system's medium time setting
+Short Time	Displays time based on your system's short time setting
+
+link:https://www.techonthenet.com/access/functions/date/format.php[https://www.techonthenet.com/access/functions/date/format.php, window='_blank]
+
+
 
 === Format values
 
@@ -113,7 +172,10 @@ For example, you may wish to show brackets/parentheses around a negative value
 [cols="2,5", options='header']
 |===
 |Format Name	|Description
-|General Date	|Display a date and/or time. For real numbers, display date and time. Integer numbers display time only. If there is no integer part, then display only time.
+|General Date	|Display a date and/or time. For real numbers, display date and time. 
+Integer numbers display time only. If there is no integer part, then display only time.
+|===
+
 |Long Date	|Displays a long date as defined in the international settings of the Windows Control Panel.
 |Medium Date	|Displays a date as defined in the short date settings of the Windows Control Panel, except it spells out the month abbreviation.
 |Short Date	|Displays a short date as defined in the International settings of the Windows Control Panel.
@@ -311,6 +373,46 @@ link:https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-pr
 On design view go to the properties page. Under the "Other" or "All" tab find Shortcut Menu. 
 Change that property from Yes to No and save. 
 Be warned though that this will disable all shortcuts for the form and not just the drop down filter/sort menus on column headings in datasheet view.
+
+=== Determine the Current Object
+
+The CurrentObjectName property is set by Microsoft Access to a string expression containing the name of the active object.
+
+.Current Object
+[source,javascript]
+----
+ intCurrentType = Application.CurrentObjectType 
+ strCurrentName = Application.CurrentObjectName 
+----
+
+=== Update LastUpdated and UpdatedBy
+
+These two fields are used in most my code to show when the row was last touched by someone.
+
+.Update Audit
+[source,javascript]
+----
+Private Sub Form_BeforeUpdate(Cancel As Integer)
+    '*--- TimeStanp any change
+    Me.LastUpdated = Now()
+    Me.UpdatedBy = SetUserName()
+End Sub
+----
+
+
+
+=== Determine Current subroutine
+
+.Current sub
+[source,javascript]
+----
+    msgbox  Application.VBE.ActiveCodePane.CodeModule)
+    '*--- will return something like 
+    '* Form_frmIMMTemplateImport
+----
+
+
+
 
 === Requery a form from another form
 
@@ -637,6 +739,25 @@ END
 FROM OrderDetails;
 ----
 
+=== DBA Display all columns of Tables in DB
+
+.MySQL Column List
+[source,javascript]
+----
+select 
+    tab.name as table_name, 
+    col.column_id,
+    col.name as column_name, 
+    t.name as data_type,    
+    col.max_length,
+    col.precision
+from sys.tables as tab
+    inner join sys.columns as col
+        on tab.object_id = col.object_id
+    left join sys.types as t
+    on col.user_type_id = t.user_type_id
+----
+
 
 
 
@@ -670,7 +791,7 @@ Technical Details
 ROUND(number, decimals, operation)
 
 -- Round number to nearest decimal 
-round(DIHTA.ValueIS, 0, 0)
+round(DIHTA.ValueIS, 0, 1)
 ----
 
 .Round arguments
@@ -718,7 +839,7 @@ IF Boolean_expression
      { sql_statement | statement_block } ]   
 ----
 
-=== Immediat If (IIF)
+=== Immediate If (IIF)
 
 ----
 IIF(condition, value_if_true, value_if_false)
@@ -940,6 +1061,7 @@ link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-line
 [cols='2,2,2,6' options='header']
 |===
 | Date  | Version | Author | Description
+| 06/08/2020 | V2.1c | JHRS | added MySQL DBVA
 | 06/04/2020 | V2.1b | JHRS |  Initial version
 |===
 
