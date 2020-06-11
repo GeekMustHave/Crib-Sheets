@@ -691,6 +691,22 @@ SET column1 = value1, column2 = value2, ...
 WHERE condition;
 ----
 
+=== Update with Join
+
+----
+UPDATE T1, T2,
+[INNER JOIN | LEFT JOIN] T1 ON T1.C1 = T2. C1
+SET T1.C2 = T2.C2, 
+    T2.C3 = expr
+WHERE condition
+----
+
+
+
+link:https://www.mysqltutorial.org/mysql-update-join/[https://www.mysqltutorial.org/mysql-update-join/, window='_blank]
+
+
+
 === Count Distinct
 
 You can use the DISTINCT clause within the COUNT function. For example, 
@@ -1039,6 +1055,20 @@ End Function
 
 link:https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table[https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table, window='_blank]
 
+
+=== Copy Text Box to Clipboard
+
+The following example illustrates how to copy the contents of a text box named txtNotes to the Clipboard.
+.Copy to Clipboard
+[source,javascript]
+----
+Private Sub cmdCopy_Click() 
+   Me!txtNotes.SetFocus 
+   DoCmd.RunCommand acCmdCopy 
+End Sub
+----
+
+link:https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard[https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard, window='_blank]
 
 
 

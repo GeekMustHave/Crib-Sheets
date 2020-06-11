@@ -478,11 +478,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_like_with_join">2.1. Like with Join</a></li>
 <li><a href="#_update_with_where">2.2. Update with Where</a></li>
-<li><a href="#_count_distinct">2.3. Count Distinct</a></li>
-<li><a href="#_count_nulls">2.4. Count nulls</a></li>
-<li><a href="#_add_a_auto_increment_column_to_a_table">2.5. Add a Auto Increment column to a table</a></li>
-<li><a href="#_case_select">2.6. Case (Select)</a></li>
-<li><a href="#_dba_display_all_columns_of_tables_in_db">2.7. DBA Display all columns of Tables in DB</a></li>
+<li><a href="#_update_with_join">2.3. Update with Join</a></li>
+<li><a href="#_count_distinct">2.4. Count Distinct</a></li>
+<li><a href="#_count_nulls">2.5. Count nulls</a></li>
+<li><a href="#_add_a_auto_increment_column_to_a_table">2.6. Add a Auto Increment column to a table</a></li>
+<li><a href="#_case_select">2.7. Case (Select)</a></li>
+<li><a href="#_dba_display_all_columns_of_tables_in_db">2.8. DBA Display all columns of Tables in DB</a></li>
 </ul>
 </li>
 <li><a href="#_sql_server">3. SQL Server</a>
@@ -506,6 +507,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_sqlite">4. SQLite</a>
 <ul class="sectlevel2">
 <li><a href="#_dsnless_odbc_connection">4.1. DSNLess ODBC connection</a></li>
+<li><a href="#_copy_text_box_to_clipboard">4.2. Copy Text Box to Clipboard</a></li>
 </ul>
 </li>
 <li><a href="#_powershell">5. Powershell</a>
@@ -1449,7 +1451,22 @@ WHERE condition;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_count_distinct">2.3. Count Distinct</h3>
+<h3 id="_update_with_join">2.3. Update with Join</h3>
+<div class="listingblock">
+<div class="content">
+<pre>UPDATE T1, T2,
+[INNER JOIN | LEFT JOIN] T1 ON T1.C1 = T2. C1
+SET T1.C2 = T2.C2,
+    T2.C3 = expr
+WHERE condition</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://www.mysqltutorial.org/mysql-update-join/" target="'_blank">https://www.mysqltutorial.org/mysql-update-join/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_count_distinct">2.4. Count Distinct</h3>
 <div class="paragraph">
 <p>You can use the DISTINCT clause within the COUNT function. For example,
 the SQL statement below returns the number of unique departments where at least one employee makes over $55,000 / year.</p>
@@ -1463,7 +1480,7 @@ WHERE salary &gt; 55000;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_count_nulls">2.4. Count nulls</h3>
+<h3 id="_count_nulls">2.5. Count nulls</h3>
 <div class="listingblock">
 <div class="content">
 <pre>select sum(case when FirstName IS NULL then 1 else 0 end) as NUMBER_OF_NULL_VALUE from DemoTable;</pre>
@@ -1474,7 +1491,7 @@ WHERE salary &gt; 55000;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_add_a_auto_increment_column_to_a_table">2.5. Add a Auto Increment column to a table</h3>
+<h3 id="_add_a_auto_increment_column_to_a_table">2.6. Add a Auto Increment column to a table</h3>
 <div class="listingblock">
 <div class="title">Add Auto Increment</div>
 <div class="content">
@@ -1483,7 +1500,7 @@ WHERE salary &gt; 55000;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_case_select">2.6. Case (Select)</h3>
+<h3 id="_case_select">2.7. Case (Select)</h3>
 <div class="paragraph">
 <p>The CASE statement goes through conditions and return a value when the first condition is met (like an IF-THEN-ELSE statement).
 So, once a condition is true, it will stop reading and return the result.</p>
@@ -1508,7 +1525,7 @@ FROM OrderDetails;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dba_display_all_columns_of_tables_in_db">2.7. DBA Display all columns of Tables in DB</h3>
+<h3 id="_dba_display_all_columns_of_tables_in_db">2.8. DBA Display all columns of Tables in DB</h3>
 <div class="listingblock">
 <div class="title">MySQL Column List</div>
 <div class="content">
@@ -1880,6 +1897,24 @@ End Function</code></pre>
 <p><a href="https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table" target="'_blank">https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table</a></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_copy_text_box_to_clipboard">4.2. Copy Text Box to Clipboard</h3>
+<div class="paragraph">
+<p>The following example illustrates how to copy the contents of a text box named txtNotes to the Clipboard.
+.Copy to Clipboard</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">Private Sub cmdCopy_Click()
+   Me!txtNotes.SetFocus
+   DoCmd.RunCommand acCmdCopy
+End Sub</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard" target="'_blank">https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1920,6 +1955,12 @@ End Function</code></pre>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">06/08/2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">V2.1c</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JHRS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">added MySQL DBVA</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">06/04/2020</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">V2.1b</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JHRS</p></td>
@@ -1933,7 +1974,7 @@ End Function</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-06-08 14:09:02 -0400
+Last updated 2020-06-11 14:15:07 -0400
 </div>
 </div>
 </body>
