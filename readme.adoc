@@ -41,7 +41,7 @@ The Microsoft Access Mid function extracts a substring from a string (starting a
 Mid ( text, start_position, [number_of_characters] )
 ----
 
-link:https://www.techonthenet.com/access/functions/string/mid.php[https://www.techonthenet.com/access/functions/string/mid.php, window='_blank]
+link:https://www.techonthenet.com/access/functions/string/mid.php[https://www.techonthenet.com/access/functions/string/mid.php, window='_blank']
 
 === Date Difference (DateDif)
 
@@ -87,7 +87,7 @@ firstdayofyear	Optional. Specifies the first week of the year. Can be one of the
 2 = Use the first week in the year that has at least 4 days
 3 = Use the first full week of the year
 
-link:https://www.w3schools.com/sql/func_msaccess_datediff.asp[https://www.w3schools.com/sql/func_msaccess_datediff.asp, window='_blank]
+link:https://www.w3schools.com/sql/func_msaccess_datediff.asp[https://www.w3schools.com/sql/func_msaccess_datediff.asp, window='_blank']
 
 |===
 |Format	|Explanation
@@ -99,8 +99,8 @@ Long Time	Displays time based on your system's long time setting
 Medium Time	Displays time based on your system's medium time setting
 Short Time	Displays time based on your system's short time setting
 
-link:https://www.techonthenet.com/access/functions/date/format.php[https://www.techonthenet.com/access/functions/date/format.php, window='_blank]
-
+link:https://www.techonthenet.com/access/functions/date/format.php[https://www.techonthenet.com/access/functions/date/format.php, window='_blank']
+|===
 
 
 === Format values
@@ -117,9 +117,8 @@ format(([On_Hand]-[Qty_Needed]), "#,##0[Black];(#,##0)[Red];0;0")
 
 sReturn = Format(sValueIS, "$###,###,###,##0[Black];($###,###,###,##0)[Red];;")
 ----
-
-[cols="2,8", options='header']
 .Predefined Formats
+[cols="2,8", options='header']
 |===
 |Format Name	|Description
 |General Number	|Display the number as is.
@@ -140,7 +139,7 @@ This is so different formats can be applied to different values, such as to posi
 For example, you may wish to show brackets/parentheses around a negative value
 
 
-.Section	Detail
+.Section Detail
 [cols="2,8", options='header']
 |===
 |Number of Sections | Formatting
@@ -174,8 +173,6 @@ For example, you may wish to show brackets/parentheses around a negative value
 |Format Name	|Description
 |General Date	|Display a date and/or time. For real numbers, display date and time. 
 Integer numbers display time only. If there is no integer part, then display only time.
-|===
-
 |Long Date	|Displays a long date as defined in the international settings of the Windows Control Panel.
 |Medium Date	|Displays a date as defined in the short date settings of the Windows Control Panel, except it spells out the month abbreviation.
 |Short Date	|Displays a short date as defined in the International settings of the Windows Control Panel.
@@ -184,7 +181,7 @@ Integer numbers display time only. If there is no integer part, then display onl
 |Short Time	|Displays a time using 24-hour format (e.g., 18:10).
 |===
 
-link:https://sourcedaddy.com/ms-access/format-function.html[https://sourcedaddy.com/ms-access/format-function.html, window='_blank]
+link:https://sourcedaddy.com/ms-access/format-function.html[https://sourcedaddy.com/ms-access/format-function.html, window='_blank']
 
 === Check if folder or file exists
 
@@ -283,7 +280,7 @@ CopyFile_Error:
     Exit Function
 End Function
 ----
-link:https://www.devhut.net/2010/09/29/ms-access-vba-copy-a-file/[https://www.devhut.net/2010/09/29/ms-access-vba-copy-a-file/, window='_blank]
+link:https://www.devhut.net/2010/09/29/ms-access-vba-copy-a-file/[https://www.devhut.net/2010/09/29/ms-access-vba-copy-a-file/, window='_blank']
 
 
 === Hide second column in Combo box
@@ -366,7 +363,7 @@ Public Sub SetFieldDescription(strTableName As String, _
 End Sub
 ----
 
-link:https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html[https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html, window='_blank]
+link:https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html[https://sourcedaddy.com/ms-access/setting-and-retrieving-built-in-object-properties.html, window='_blank']
 
 === Turn off datasheet Sort/Filter
 
@@ -465,7 +462,7 @@ PROC_ERR:
 End Function
 ----
 
-link:http://www.fmsinc.com/microsoftaccess/databasesplitter/[http://www.fmsinc.com/microsoftaccess/databasesplitter/, window='_blank]
+link:http://www.fmsinc.com/microsoftaccess/databasesplitter/[http://www.fmsinc.com/microsoftaccess/databasesplitter/, window='_blank']
 
 
 
@@ -667,6 +664,50 @@ Select Case test_expression
 End Select
 ----
 
+=== Coalesce Function
+
+Access does not have Coalesce function, this quick VBA equivalent.
+You pass it an array of values.
+
+.Coalesce Function
+[source,javascript]
+----
+Function Coalesce(ParamArray varValues()) As Variant
+'returns the first non null value, similar to SQL Server Coalesce() function
+'Patrick Honorez --- www.idevlop.com
+    Dim i As Long
+    Coalesce = Null
+    For i = LBound(varValues) To UBound(varValues)
+        If Not IsNull(varValues(i)) Then
+            Coalesce = varValues(i)
+            Exit Function
+        End If
+    Next
+End Function
+----
+
+link:https://stackoverflow.com/questions/247858/coalesce-alternative-in-access-sql[https://stackoverflow.com/questions/247858/coalesce-alternative-in-access-sql, window='_blank']
+
+=== IsNull
+
+The MS Access IsNull() function returns TRUE (-1) if the expression is a null value, otherwise FALSE (0):
+
+.IsNull
+[source,javascript]
+----
+SELECT ProductName, UnitPrice * (UnitsInStock + IIF(IsNull(UnitsOnOrder), 0, UnitsOnOrder))
+FROM Products;
+----
+
+Source: link:https://www.w3schools.com/sql/sql_isnull.asp[https://www.w3schools.com/sql/sql_isnull.asp, window='_blank']
+
+
+
+
+
+
+
+
 
 
 
@@ -703,7 +744,7 @@ WHERE condition
 
 
 
-link:https://www.mysqltutorial.org/mysql-update-join/[https://www.mysqltutorial.org/mysql-update-join/, window='_blank]
+link:https://www.mysqltutorial.org/mysql-update-join/[https://www.mysqltutorial.org/mysql-update-join/, window='_blank']
 
 
 
@@ -971,7 +1012,7 @@ WHERE condition;
 
 Source: https://www.w3schools.com/sql/sql_select_into.asp
 
-link:https://www.w3schools.com/sql/sql_select_into.asp[https://www.w3schools.com/sql/sql_select_into.asp, window='_blank]
+link:https://www.w3schools.com/sql/sql_select_into.asp[https://www.w3schools.com/sql/sql_select_into.asp, window='_blank']
 
 
 === Parameters in SP
@@ -994,7 +1035,41 @@ set @sp = 'Jack'
 exec getSalesperson @sp
 ----
 
-link:https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server-queries-and-stored-procedures/[https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server-queries-and-stored-procedures/, window='_blank]
+link:https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server-queries-and-stored-procedures/[https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server-queries-and-stored-procedures/, window='_blank']
+
+
+=== CharIndex (Substring)
+
+The CHARINDEX() function searches for a substring in a string, and returns the position. If the substring is not found, this function returns 0. Note: This function performs a case-insensitive search.
+
+.CharIndex
+[source,javascript]
+----
+CHARINDEX(substring, string, start)
+----
+
+Source: link:https://www.w3schools.com/sql/func_sqlserver_charindex.asp[https://www.w3schools.com/sql/func_sqlserver_charindex.asp, window='_blank']
+
+=== Declare (Variables)
+
+In SQL Server (Transact-SQL), a variable allows a programmer to store data temporarily during the execution of code.
+
+.Declare Variable
+[source,javascript]
+----
+-- Declare the variable to be used.
+DECLARE @MyCounter int;
+
+-- Initialize the variable.
+SET @MyCounter = 0;
+
+-- Alternative example
+DECLARE @techonthenet VARCHAR(50);
+
+SET @techonthenet = 'Example showing how to declare variable';
+----
+
+
 
 
 == SQLite
@@ -1053,7 +1128,18 @@ AttachDSNLessTable = False
 End Function
 ----
 
-link:https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table[https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table, window='_blank]
+link:https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table[https://docs.microsoft.com/en-us/office/troubleshoot/access/create-dsn-less-connection-linkted-table, window='_blank']
+
+
+=== Get last ID of a table
+
+.Last Record
+[source,javascript]
+----
+Dim lastID As Integer
+lastID = DMax("IDField","YourTable")
+----
+
 
 
 === Copy Text Box to Clipboard
@@ -1068,7 +1154,7 @@ Private Sub cmdCopy_Click()
 End Sub
 ----
 
-link:https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard[https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard, window='_blank]
+link:https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard[https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard, window='_blank']
 
 
 
@@ -1081,7 +1167,7 @@ link:https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/sen
 get-content input.txt|select-object -first 10 >output.txt
 ----
 
-link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-lines-of-a-csv-file-in-powershell[https://stackoverflow.com/questions/28908638/extract-only-the-first-10-lines-of-a-csv-file-in-powershell, window='_blank]
+link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-lines-of-a-csv-file-in-powershell[https://stackoverflow.com/questions/28908638/extract-only-the-first-10-lines-of-a-csv-file-in-powershell, window='_blank']
 
 
 <<<<
@@ -1091,6 +1177,7 @@ link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-line
 [cols='2,2,2,6' options='header']
 |===
 | Date  | Version | Author | Description
+| 06/14/2020 | V2.1d | JHRS |Charindex, isnull, Variables
 | 06/08/2020 | V2.1c | JHRS | added MySQL DBVA
 | 06/04/2020 | V2.1b | JHRS |  Initial version
 |===
