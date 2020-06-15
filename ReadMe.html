@@ -457,24 +457,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_hide_second_column_in_combo_box">1.6. Hide second column in Combo box</a></li>
 <li><a href="#_refresh_subform_with_new_querydef_sql">1.7. Refresh Subform with new QueryDef SQL</a></li>
 <li><a href="#_convert_expression_to_data_type_c">1.8. Convert expression to data type ( C )</a></li>
-<li><a href="#_creating_user_properties_tables_queries">1.9. Creating User Properties (Tables / Queries)</a></li>
-<li><a href="#_turn_off_datasheet_sortfilter">1.10. Turn off datasheet Sort/Filter</a></li>
-<li><a href="#_determine_the_current_object">1.11. Determine the Current Object</a></li>
-<li><a href="#_update_lastupdated_and_updatedby">1.12. Update LastUpdated and UpdatedBy</a></li>
-<li><a href="#_determine_current_subroutine">1.13. Determine Current subroutine</a></li>
-<li><a href="#_requery_a_form_from_another_form">1.14. Requery a form from another form</a></li>
-<li><a href="#_relinking_table_vba">1.15. Relinking table VBA</a></li>
-<li><a href="#_sort_hidden_properties_of_datasheet">1.16. Sort Hidden properties of datasheet</a></li>
-<li><a href="#_change_hide_show_of_a_field_on_datasheet">1.17. Change Hide / Show of a field on datasheet</a></li>
-<li><a href="#_select_case_if_then_else">1.18. Select Case (If-Then-Else)</a></li>
-<li><a href="#_access_columns_of_combo_control">1.19. Access columns of Combo control</a></li>
-<li><a href="#_set_filter_on_subform_from_main_form">1.20. Set Filter on Subform from Main Form</a></li>
-<li><a href="#_reset_query_column_order_setting">1.21. Reset query Column Order setting</a></li>
-<li><a href="#_open_dynaset_change_sql">1.22. Open Dynaset, change SQL</a></li>
-<li><a href="#_open_recordset_add_row">1.23. Open recordset, add row</a></li>
-<li><a href="#_select_cased_statement_vba">1.24. Select Cased Statement (VBA)</a></li>
-<li><a href="#_coalesce_function">1.25. Coalesce Function</a></li>
-<li><a href="#_isnull">1.26. IsNull</a></li>
+<li><a href="#_replace">1.9. Replace</a></li>
+<li><a href="#_sql_like">1.10. SQL LIKE</a></li>
+<li><a href="#_c_data_conversion">1.11. C data conversion</a></li>
+<li><a href="#_creating_user_properties_tables_queries">1.12. Creating User Properties (Tables / Queries)</a></li>
+<li><a href="#_turn_off_datasheet_sortfilter">1.13. Turn off datasheet Sort/Filter</a></li>
+<li><a href="#_determine_the_current_object">1.14. Determine the Current Object</a></li>
+<li><a href="#_update_lastupdated_and_updatedby">1.15. Update LastUpdated and UpdatedBy</a></li>
+<li><a href="#_determine_current_subroutine">1.16. Determine Current subroutine</a></li>
+<li><a href="#_requery_a_form_from_another_form">1.17. Requery a form from another form</a></li>
+<li><a href="#_relinking_table_vba">1.18. Relinking table VBA</a></li>
+<li><a href="#_sort_hidden_properties_of_datasheet">1.19. Sort Hidden properties of datasheet</a></li>
+<li><a href="#_change_hide_show_of_a_field_on_datasheet">1.20. Change Hide / Show of a field on datasheet</a></li>
+<li><a href="#_select_case_if_then_else">1.21. Select Case (If-Then-Else)</a></li>
+<li><a href="#_access_columns_of_combo_control">1.22. Access columns of Combo control</a></li>
+<li><a href="#_set_filter_on_subform_from_main_form">1.23. Set Filter on Subform from Main Form</a></li>
+<li><a href="#_reset_query_column_order_setting">1.24. Reset query Column Order setting</a></li>
+<li><a href="#_open_dynaset_change_sql">1.25. Open Dynaset, change SQL</a></li>
+<li><a href="#_open_recordset_add_row">1.26. Open recordset, add row</a></li>
+<li><a href="#_select_cased_statement_vba">1.27. Select Cased Statement (VBA)</a></li>
+<li><a href="#_coalesce_function">1.28. Coalesce Function</a></li>
+<li><a href="#_isnull">1.29. IsNull</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -968,7 +971,7 @@ When you use a <code>0</code> as a ColumnWidth, that columns is not available  i
 </table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Special ColmnWidth Values</caption>
+<caption class="title">Table 5. Special Column Width Values</caption>
 <colgroup>
 <col style="width: 11.1111%;">
 <col style="width: 88.8889%;">
@@ -1011,6 +1014,85 @@ MySubformControl.SourceObject = "Query.MyQuery"</pre>
 <div class="paragraph">
 <p>The function name determines the return type as shown in the following:</p>
 </div>
+<div class="listingblock">
+<div class="title">Cast and Convert</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">-- CAST Syntax:
+CAST ( expression AS data_type [ ( length ) ] )
+
+-- CONVERT Syntax:
+CONVERT ( data_type [ ( length ) ] , expression [ , style ] )</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_replace">1.9. Replace</h3>
+<div class="paragraph">
+<p>The REPLACE() function replaces all occurrences of a substring within a string, with a new substring.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The search is case-insensitive.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Also look at the STUFF() function.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Replace</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">REPLACE(string, old_string, new_string)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Source:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sql_like">1.10. SQL LIKE</h3>
+<div class="paragraph">
+<p>The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.</p>
+</div>
+<div class="paragraph">
+<p>There are two wildcards often used in conjunction with the LIKE operator:</p>
+</div>
+<div class="paragraph">
+<p>% - The percent sign represents zero, one, or multiple characters</p>
+</div>
+<div class="paragraph">
+<p>_ - The underscore represents a single character</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+MS Access uses an asterisk (\*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_c_data_conversion">1.11. C data conversion</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -1086,7 +1168,7 @@ numbers with no decimal places. For numbers with 28 decimal places, the range is
 </table>
 </div>
 <div class="sect2">
-<h3 id="_creating_user_properties_tables_queries">1.9. Creating User Properties (Tables / Queries)</h3>
+<h3 id="_creating_user_properties_tables_queries">1.12. Creating User Properties (Tables / Queries)</h3>
 <div class="paragraph">
 <p>You can create user-defined properties for persistent DAO objects,
 such as tables and queries. You can&#8217;t create properties for nonpersistent objects, such as recordsets.
@@ -1125,7 +1207,7 @@ End Sub</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_turn_off_datasheet_sortfilter">1.10. Turn off datasheet Sort/Filter</h3>
+<h3 id="_turn_off_datasheet_sortfilter">1.13. Turn off datasheet Sort/Filter</h3>
 <div class="paragraph">
 <p>On design view go to the properties page. Under the "Other" or "All" tab find Shortcut Menu.
 Change that property from Yes to No and save.
@@ -1133,7 +1215,7 @@ Be warned though that this will disable all shortcuts for the form and not just 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_determine_the_current_object">1.11. Determine the Current Object</h3>
+<h3 id="_determine_the_current_object">1.14. Determine the Current Object</h3>
 <div class="paragraph">
 <p>The CurrentObjectName property is set by Microsoft Access to a string expression containing the name of the active object.</p>
 </div>
@@ -1146,7 +1228,7 @@ Be warned though that this will disable all shortcuts for the form and not just 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_update_lastupdated_and_updatedby">1.12. Update LastUpdated and UpdatedBy</h3>
+<h3 id="_update_lastupdated_and_updatedby">1.15. Update LastUpdated and UpdatedBy</h3>
 <div class="paragraph">
 <p>These two fields are used in most my code to show when the row was last touched by someone.</p>
 </div>
@@ -1162,7 +1244,7 @@ End Sub</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_determine_current_subroutine">1.13. Determine Current subroutine</h3>
+<h3 id="_determine_current_subroutine">1.16. Determine Current subroutine</h3>
 <div class="listingblock">
 <div class="title">Current sub</div>
 <div class="content">
@@ -1173,7 +1255,7 @@ End Sub</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_requery_a_form_from_another_form">1.14. Requery a form from another form</h3>
+<h3 id="_requery_a_form_from_another_form">1.17. Requery a form from another form</h3>
 <div class="listingblock">
 <div class="content">
 <pre>e.dirty = false
@@ -1185,7 +1267,7 @@ Forms!frmLegacy.Requery</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_relinking_table_vba">1.15. Relinking table VBA</h3>
+<h3 id="_relinking_table_vba">1.18. Relinking table VBA</h3>
 <div class="listingblock">
 <div class="content">
 <pre>Function ReLinkTable(strTable As String, strPath As String) As Boolean
@@ -1230,7 +1312,7 @@ End Function</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sort_hidden_properties_of_datasheet">1.16. Sort Hidden properties of datasheet</h3>
+<h3 id="_sort_hidden_properties_of_datasheet">1.19. Sort Hidden properties of datasheet</h3>
 <div class="paragraph">
 <p>The properties in Access related to datasheet.</p>
 </div>
@@ -1346,7 +1428,7 @@ which means all TextBox, ComboBox, and CheckBox controls.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_change_hide_show_of_a_field_on_datasheet">1.17. Change Hide / Show of a field on datasheet</h3>
+<h3 id="_change_hide_show_of_a_field_on_datasheet">1.20. Change Hide / Show of a field on datasheet</h3>
 <div class="paragraph">
 <p>The code to show and hide the columns is in a routine called ShowHideColumn.</p>
 </div>
@@ -1370,7 +1452,7 @@ End Function</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_select_case_if_then_else">1.18. Select Case (If-Then-Else)</h3>
+<h3 id="_select_case_if_then_else">1.21. Select Case (If-Then-Else)</h3>
 <div class="paragraph">
 <p>The Microsoft Access Case statement can only be used in VBA code. It has the functionality of an IF-THEN-ELSE statement.</p>
 </div>
@@ -1397,7 +1479,7 @@ End Select</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_access_columns_of_combo_control">1.19. Access columns of Combo control</h3>
+<h3 id="_access_columns_of_combo_control">1.22. Access columns of Combo control</h3>
 <div class="paragraph">
 <p>Use 0 to refer to the first column, 1 to refer to the second column,
 and so on. Use 0 to refer to the first row, 1 to refer to the second row,
@@ -1422,7 +1504,7 @@ End If</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_set_filter_on_subform_from_main_form">1.20. Set Filter on Subform from Main Form</h3>
+<h3 id="_set_filter_on_subform_from_main_form">1.23. Set Filter on Subform from Main Form</h3>
 <div class="listingblock">
 <div class="content">
 <pre>'*--- lstBoxSheets is the subForm
@@ -1432,7 +1514,7 @@ Me.LstBoxSheets.Form.FilterOn = True</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_reset_query_column_order_setting">1.21. Reset query Column Order setting</h3>
+<h3 id="_reset_query_column_order_setting">1.24. Reset query Column Order setting</h3>
 <div class="paragraph">
 <p>So, when you open a query in Datasheet view, and the column order has not been messed with and saved,
 the column order displayed is determined by the OrdinalPosition and the value of that property corresponds
@@ -1462,11 +1544,11 @@ End Sub</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_open_dynaset_change_sql">1.22. Open Dynaset, change SQL</h3>
+<h3 id="_open_dynaset_change_sql">1.25. Open Dynaset, change SQL</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_open_recordset_add_row">1.23. Open recordset, add row</h3>
+<h3 id="_open_recordset_add_row">1.26. Open recordset, add row</h3>
 <div class="listingblock">
 <div class="content">
 <pre>Dim dbCurrent As Database
@@ -1495,7 +1577,7 @@ Dim sSQL As String
 </div>
 </div>
 <div class="sect2">
-<h3 id="_select_cased_statement_vba">1.24. Select Cased Statement (VBA)</h3>
+<h3 id="_select_cased_statement_vba">1.27. Select Cased Statement (VBA)</h3>
 <div class="listingblock">
 <div class="content">
 <pre>Select Case test_expression
@@ -1516,7 +1598,7 @@ End Select</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_coalesce_function">1.25. Coalesce Function</h3>
+<h3 id="_coalesce_function">1.28. Coalesce Function</h3>
 <div class="paragraph">
 <p>Access does not have Coalesce function, this quick VBA equivalent.
 You pass it an array of values.</p>
@@ -1543,7 +1625,7 @@ End Function</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_isnull">1.26. IsNull</h3>
+<h3 id="_isnull">1.29. IsNull</h3>
 <div class="paragraph">
 <p>The MS Access IsNull() function returns TRUE (-1) if the expression is a null value, otherwise FALSE (0):</p>
 </div>
@@ -2193,7 +2275,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-06-14 20:36:35 -0400
+Last updated 2020-06-15 17:01:16 -0400
 </div>
 </div>
 </body>

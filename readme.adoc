@@ -289,7 +289,7 @@ In Visual Basic, the ColumnWidth property setting is an Integer value that repre
 
 NOTE: When you use a `0` as a ColumnWidth, that columns is not available  in vba.
 
-.Special ColmnWidth Values
+.Special Column Width Values
 [cols="1,8", options='header']
 |===
 |Setting	|Description
@@ -312,6 +312,45 @@ MySubformControl.SourceObject = "Query.MyQuery"
 === Convert expression to data type ( C )
 
 The function name determines the return type as shown in the following:
+
+.Cast and Convert
+[source,javascript]
+----
+-- CAST Syntax:  
+CAST ( expression AS data_type [ ( length ) ] )  
+  
+-- CONVERT Syntax:  
+CONVERT ( data_type [ ( length ) ] , expression [ , style ] )  
+----
+
+=== Replace
+
+The REPLACE() function replaces all occurrences of a substring within a string, with a new substring.
+
+NOTE: The search is case-insensitive.
+
+TIP: Also look at the STUFF() function.
+
+.Replace
+[source,javascript]
+----
+REPLACE(string, old_string, new_string)
+----
+
+Source: 
+
+=== SQL LIKE 
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+There are two wildcards often used in conjunction with the LIKE operator:
+
+% - The percent sign represents zero, one, or multiple characters
+
+_ - The underscore represents a single character
+
+NOTE: MS Access uses an asterisk (\*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+
+=== C data conversion
 
 [cols="2,2,8", options='header']
 |===
