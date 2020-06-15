@@ -1069,6 +1069,35 @@ DECLARE @techonthenet VARCHAR(50);
 SET @techonthenet = 'Example showing how to declare variable';
 ----
 
+=== Case then
+
+The CASE statement goes through conditions and returns a value when the first condition is met (like an IF-THEN-ELSE statement). So, once a condition is true, it will stop reading and return the result. If no conditions are true, it returns the value in the ELSE clause.
+
+.Case then
+[source,javascript]
+----
+CASE expression
+   WHEN value_1 THEN result_1
+   WHEN value_2 THEN result_2
+   WHEN value_n THEN result_n
+   ELSE result
+END
+
+-- Or
+
+CASE
+   WHEN condition_1 THEN result_1
+   WHEN condition_2 THEN result_2
+   WHEN condition_n THEN result_n
+   ELSE result
+END
+----
+
+Source: link:https://www.w3schools.com/sql/sql_case.asp[https://www.w3schools.com/sql/sql_case.asp, window='_blank']
+
+Source: link:https://www.techonthenet.com/sql_server/functions/case.php[https://www.techonthenet.com/sql_server/functions/case.php, window='_blank']
+
+
 
 
 

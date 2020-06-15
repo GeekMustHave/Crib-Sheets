@@ -1,0 +1,28 @@
+{
+    "remotePath": "./public_html/CribSheets",
+    "host": "ftp.pwc-lms.com",
+    "username": "pwclmsco",
+    "password": "NewVistas=716%",
+    "port": 21,
+    "secure": false,
+    "protocol": "ftp",
+    "uploadOnSave": false,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "agent": null,
+    "allow": [],
+    "ignore": [
+        "\\.vscode",
+        "\\.git",
+        "\\.DS_Store",
+        "\\.gitignore"
+    ],
+    "generatedFiles": {
+        "extensionsToInclude": [
+            ""
+        ],
+        "path": ""
+    }
+}
