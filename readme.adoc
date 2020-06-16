@@ -350,6 +350,50 @@ _ - The underscore represents a single character
 
 NOTE: MS Access uses an asterisk (\*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
 
+=== SQL LIKE with Underscore
+
+.Like UNderscore
+[source,javascript]
+----
+... LIKE '%[_]d'
+----
+
+Source: link:https://stackoverflow.com/questions/5821/sql-server-escape-an-underscore[https://stackoverflow.com/questions/5821/sql-server-escape-an-underscore, window='_blank'/
+
+== Print
+
+.Print
+[source,javascript]
+----
+PRINT msg_str | @local_variable | string_expr  
+----
+
+msg_str
+Is a character string or Unicode string constant. For more information, see Constants (Transact-SQL).
+
+@ local_variable
+Is a variable of any valid character data type. @local_variable must be char, nchar, varchar, or nvarchar, or it must be able to be implicitly converted to those data types.
+
+string_expr
+Is an expression that returns a string. Can include concatenated literal values, functions, and variables. For more information, see Expressions (Transact-SQL).
+
+NOTE: Print can not be used in Functions
+
+=== Create Table 
+- By Copying all columns from another table
+Syntax
+The syntax for the CREATE TABLE AS statement when copying all of the columns in SQL is:
+
+.Create Table Select
+[source,javascript]
+----
+CREATE TABLE new_table
+  AS (SELECT * FROM old_table);
+----
+
+Source: link:https://www.techonthenet.com/sql/tables/create_table2.php[https://www.techonthenet.com/sql/tables/create_table2.php, window='_blank']
+
+
 === C data conversion
 
 [cols="2,2,8", options='header']
@@ -756,7 +800,7 @@ Source: link:https://www.w3schools.com/sql/sql_isnull.asp[https://www.w3schools.
 === Like with Join
 
 ----
-SELECT table1.*, table2.z
+SELECT table1.\*, table2.z
 FROM table1
 INNER JOIN table2
   ON table2.name LIKE CONCAT('%', table1.name, '%') 
@@ -906,7 +950,7 @@ round(DIHTA.ValueIS, 0, 1)
 SELECT CHARINDEX('t', 'Customer') AS MatchPosition;
 ----
 
-=== Create Table Select
+=== Create Table Select (Copy Table)
 
 The SELECT INTO statement copies data from one table into a new table.
 
