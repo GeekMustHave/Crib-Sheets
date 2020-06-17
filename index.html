@@ -516,6 +516,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_declare_variables">3.16. Declare (Variables)</a></li>
 <li><a href="#_case_then">3.17. Case then</a></li>
 <li><a href="#_adding_columns_with_nulls">3.18. Adding columns with Nulls</a></li>
+<li><a href="#_line_continuation_backslash">3.19. Line Continuation (Backslash)</a></li>
+<li><a href="#_merge_upsert">3.20. Merge (UpSert)</a></li>
 </ul>
 </li>
 <li><a href="#_sqlite">4. SQLite</a>
@@ -2274,6 +2276,40 @@ COALESCE(P01,0)</code></pre>
 <p>Source: <a href="https://stackoverflow.com/questions/1088648/sql-sum-3-columns-when-one-column-has-a-null-value" target="_blank" rel="noopener">https://stackoverflow.com/questions/1088648/sql-sum-3-columns-when-one-column-has-a-null-value</a></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_line_continuation_backslash">3.19. Line Continuation (Backslash)</h3>
+<div class="listingblock">
+<div class="title">Continuation</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">&lt;first section of string&gt; \
+&lt;continued section of string&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://docs.microsoft.com/en-us/sql/t-sql/language-elements/sql-server-utilities-statements-backslash?view=sql-server-ver15" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/sql/t-sql/language-elements/sql-server-utilities-statements-backslash?view=sql-server-ver15</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_merge_upsert">3.20. Merge (UpSert)</h3>
+<div class="paragraph">
+<p>Lets create a MERGE statement to INSERT or UPDATE a row in table ClientData:</p>
+</div>
+<div class="listingblock">
+<div class="title">Merge</div>
+<div class="content">
+<pre class="highlight"><code class="language-javascript" data-lang="javascript">MERGE dbo.ClientData AS [Target]
+USING (SELECT 12345 AS clientId) AS [Source]
+ON [Target].clientId = [Source].clientId
+WHEN MATCHED THEN
+  UPDATE SET [Target].data='Update', [Target].updatedDateUtc = GetUtcDate()
+WHEN NOT MATCHED THEN
+  INSERT (clientId, data) VALUES ([Source].clientId, 'Insert');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/" target="_blank" rel="noopener">https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2432,7 +2468,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-06-16 22:58:04 -0400
+Last updated 2020-06-17 18:37:00 -0400
 </div>
 </div>
 </body>

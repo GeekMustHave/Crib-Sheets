@@ -187,7 +187,7 @@ link:https://sourcedaddy.com/ms-access/format-function.html[https://sourcedaddy.
 === Check if folder or file exists
 
 .Access detect file
-[source,javascript]
+[source,vbscript,linenums]
 ----
 Function FileExists(ByVal strFile As String, Optional bFindFolders As Boolean) As Boolean
     'Purpose:   Return True if the file exists, even if it is hidden.
