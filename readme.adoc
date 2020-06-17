@@ -12,8 +12,10 @@ v2.1b, 02/06/2020: Crib Sheet
 :numbered: 
 :chapter-label: 
 :experimental:
-:source-hightlighter: coderay
+:source-hightlighter: pygments
 :source-language: vbscript
+:pygments-style: manni
+:pygments-linenums-mode: inline
 :icons: font
 :docdir: ./documents
 :github: https://github.com/GeekMustHave/GitHub repositoryName
@@ -491,6 +493,8 @@ Source: http://www.utteraccess.com/forum/Requery-Form-Form-t2001669.html
 
 === Relinking table VBA
 
+.Relink Tables
+[source,vbscript,linenums]
 ----
 Function ReLinkTable(strTable As String, strPath As String) As Boolean
   ' Comments: Re-links the named table to the named path
@@ -533,11 +537,11 @@ link:http://www.fmsinc.com/microsoftaccess/databasesplitter/[http://www.fmsinc.c
 
 
 
-=== Sort Hidden properties of datasheet
+=== Hidden properties of datasheet
 
 The properties in Access related to datasheet.
 
-[cols="2,8", options='header']
+[cols="3,8", options='header']
 .Hidden Properties
 |===
 |Property | Meaning and Usage
