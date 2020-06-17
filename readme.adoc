@@ -13,6 +13,7 @@ v2.1b, 02/06/2020: Crib Sheet
 :chapter-label: 
 :experimental:
 :source-hightlighter: coderay
+:source-language: vbscript
 :icons: font
 :docdir: ./documents
 :github: https://github.com/GeekMustHave/GitHub repositoryName
@@ -1262,6 +1263,38 @@ COALESCE(P01,0)
 ----
 
 Source: link:https://stackoverflow.com/questions/1088648/sql-sum-3-columns-when-one-column-has-a-null-value[https://stackoverflow.com/questions/1088648/sql-sum-3-columns-when-one-column-has-a-null-value, window='_blank']
+
+
+=== Line Continuation (Backslash)
+
+.Continuation
+[source,javascript]
+----
+<first section of string> \  
+<continued section of string>
+----
+
+Source: link:https://docs.microsoft.com/en-us/sql/t-sql/language-elements/sql-server-utilities-statements-backslash?view=sql-server-ver15[https://docs.microsoft.com/en-us/sql/t-sql/language-elements/sql-server-utilities-statements-backslash?view=sql-server-ver15, window='_blank']
+
+
+=== Merge (UpSert)
+
+Lets create a MERGE statement to INSERT or UPDATE a row in table ClientData:
+
+.Merge
+[source,javascript]
+----
+
+MERGE dbo.ClientData AS [Target]
+USING (SELECT 12345 AS clientId) AS [Source] 
+ON [Target].clientId = [Source].clientId
+WHEN MATCHED THEN
+  UPDATE SET [Target].data='Update', [Target].updatedDateUtc = GetUtcDate()
+WHEN NOT MATCHED THEN
+  INSERT (clientId, data) VALUES ([Source].clientId, 'Insert');
+----
+
+Source: link:https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/[https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/, window='_blank']
 
 
 
