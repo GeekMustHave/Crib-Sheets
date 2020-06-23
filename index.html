@@ -469,7 +469,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_determine_current_subroutine">1.18. Determine Current subroutine</a></li>
 <li><a href="#_requery_a_form_from_another_form">1.19. Requery a form from another form</a></li>
 <li><a href="#_relinking_table_vba">1.20. Relinking table VBA</a></li>
-<li><a href="#_sort_hidden_properties_of_datasheet">1.21. Sort Hidden properties of datasheet</a></li>
+<li><a href="#_hidden_properties_of_datasheet">1.21. Hidden properties of datasheet</a></li>
 <li><a href="#_change_hide_show_of_a_field_on_datasheet">1.22. Change Hide / Show of a field on datasheet</a></li>
 <li><a href="#_select_case_if_then_else">1.23. Select Case (If-Then-Else)</a></li>
 <li><a href="#_access_columns_of_combo_control">1.24. Access columns of Combo control</a></li>
@@ -1310,8 +1310,9 @@ Forms!frmLegacy.Requery</pre>
 <div class="sect2">
 <h3 id="_relinking_table_vba">1.20. Relinking table VBA</h3>
 <div class="listingblock">
+<div class="title">Relink Tables</div>
 <div class="content">
-<pre>Function ReLinkTable(strTable As String, strPath As String) As Boolean
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">Function ReLinkTable(strTable As String, strPath As String) As Boolean
   ' Comments: Re-links the named table to the named path
   ' Params  : strTable     Table name of the linked table
   ' strPath : full path name of the database containing the real table
@@ -1345,7 +1346,7 @@ PROC_EXIT:
 
 PROC_ERR:
   Resume PROC_EXIT
-End Function</pre>
+End Function</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1353,15 +1354,15 @@ End Function</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sort_hidden_properties_of_datasheet">1.21. Sort Hidden properties of datasheet</h3>
+<h3 id="_hidden_properties_of_datasheet">1.21. Hidden properties of datasheet</h3>
 <div class="paragraph">
 <p>The properties in Access related to datasheet.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 6. Hidden Properties</caption>
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
+<col style="width: 27.2727%;">
+<col style="width: 72.7273%;">
 </colgroup>
 <thead>
 <tr>
@@ -2468,7 +2469,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-06-17 18:41:22 -0400
+Last updated 2020-06-17 19:02:38 -0400
 </div>
 </div>
 </body>

@@ -493,7 +493,7 @@ Source: http://www.utteraccess.com/forum/Requery-Form-Form-t2001669.html
 
 === Relinking table VBA
 
-.Relink Tables
+.Relgenink Tables
 [source,vbscript,linenums]
 ----
 Function ReLinkTable(strTable As String, strPath As String) As Boolean
@@ -857,6 +857,19 @@ WHERE class = 1 --Object or column
 
 
 
+
+=== Close form if it is open
+
+.Close Open form
+[source,basic]
+----
+    '\*-- Close out main menu if open
+    If CurrentProject.AllForms("frmAAP_ObjectMenuList").IsLoaded = True Then
+        DoCmd.Close acForm, "frmAAP_ObjectMenuList"
+    End If
+----
+
+Source: link:https://social.msdn.microsoft.com/Forums/office/en-US/6ea91117-eb79-41dd-9c98-382f0577f45e/how-do-i-test-to-see-if-a-form-is-open[https://social.msdn.microsoft.com/Forums/office/en-US/6ea91117-eb79-41dd-9c98-382f0577f45e/how-do-i-test-to-see-if-a-form-is-open, window='_blank']
 
 
 
