@@ -872,7 +872,38 @@ WHERE class = 1 --Object or column
 Source: link:https://social.msdn.microsoft.com/Forums/office/en-US/6ea91117-eb79-41dd-9c98-382f0577f45e/how-do-i-test-to-see-if-a-form-is-open[https://social.msdn.microsoft.com/Forums/office/en-US/6ea91117-eb79-41dd-9c98-382f0577f45e/how-do-i-test-to-see-if-a-form-is-open, window='_blank']
 
 
+=== Sleep, wait, timer
 
+The Sleep in Kerel32 will cause errors on some users environment.
+This small function will do the same thing without Kernel32.
+
+.Timer
+[source,vbscript}]
+----
+Function WaitTime(n As Double)
+'Function that wait an amount of time n in seconds
+TWait = Time
+TWait = DateAdd("s", n, TWait)
+Do Until TNow >= TWait
+     TNow = Time
+Loop
+End Function
+----
+
+Source: link:https://stackoverflow.com/questions/469347/is-there-an-equivalent-to-thread-sleep-in-vba[https://stackoverflow.com/questions/469347/is-there-an-equivalent-to-thread-sleep-in-vba, window='_blank']
+
+
+=== Set focus to Form in split form
+
+Since all of the data fields are both parts of the split form.  A focus to a field goes to the list on top.  
+
+.Focus to Form in split form
+[source,vbscript]
+----        
+    '*--- TRICK to get focus into form part of split form
+    Me.btnClose.SetFocus  '*--- Must be a button
+    Me.QueryName.SetFocus   '*--- First text field on form
+----
 
 
 
