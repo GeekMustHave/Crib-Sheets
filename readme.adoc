@@ -860,7 +860,7 @@ WHERE class = 1 --Object or column
 
 === Close form if it is open
 
-.Close Open form
+.Close Open form 
 [source,basic]
 ----
     '\*-- Close out main menu if open
@@ -886,7 +886,8 @@ TWait = Time
 TWait = DateAdd("s", n, TWait)
 Do Until TNow >= TWait
      TNow = Time
-Loop
+Loopgen-doco
+
 End Function
 ----
 
@@ -899,10 +900,48 @@ Since all of the data fields are both parts of the split form.  A focus to a fie
 
 .Focus to Form in split form
 [source,vbscript]
-----        
+----gen-doco        
     '*--- TRICK to get focus into form part of split form
     Me.btnClose.SetFocus  '*--- Must be a button
     Me.QueryName.SetFocus   '*--- First text field on form
+----
+
+=== Close all Windows VB Editor
+
+AFter updating an application the VB editor has many windows open.
+This can affect performance and increase change of a DB fail.
+
+This code put ito a module can be run by clicking into and running it kbd:[F5].
+
+.Close all VBE windows
+[source,vbscript}]
+----
+Sub Close_All_VBE_Windows() 'CR v5207
+
+'// Source: https://access-programmers.co.uk/foru...
+'// Thanks to: Colin Ridders (https://access-programmers.co.uk/foru...)
+On Error GoTo Err_Handler
+
+Dim vbWin As VBIDE.Window
+
+For Each vbWin In Application.VBE.Windows
+     If (vbWin.Type = vbext_wt_CodeWindow Or _
+         vbWin.Type = vbext_wt_Designer) And _
+         Not vbWin Is Application.VBE.ActiveWindow Then
+             vbWin.Close
+     End If
+ Next
+ 
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+'CR 02/02/2016 - added error handling to fix issue in 64-bit Office
+    If err.Number = 424 Then Resume Next 'object required
+    MsgBox "Error " & err.Number & " in Close_All_VBE_Windows procedure: " & err.Description
+    Resume Exit_Handler
+
+End Sub
 ----
 
 
