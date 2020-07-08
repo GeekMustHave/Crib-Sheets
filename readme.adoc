@@ -1053,6 +1053,8 @@ Inside of the frmSAM_PersonalMaintenance sub here is an example of how to use th
 <1> me.OpenARg is the one parm being sent to form.
 
 NOTE: You could put multiple elements in the OpenArg parameter.  
+
+
 By combining your values into one string separated by a character that would not be in your string, you can overcome the OpenArgs limitation and still use DoCmd to pass them. The OpenArgs parameter is a string that the form can read once it is opened. Calling the form, add the string to the OpenArgs parameter like this
 
 .Setting Multiple Parms
