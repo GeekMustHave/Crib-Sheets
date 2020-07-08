@@ -483,9 +483,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_print">1.32. Print</a></li>
 <li><a href="#_list_columns_schema">1.33. List Columns (Schema)</a></li>
 <li><a href="#_close_form_if_it_is_open">1.34. Close form if it is open</a></li>
-<li><a href="#_sleep_wait_timer">1.35. Sleep, wait, timer</a></li>
-<li><a href="#_set_focus_to_form_in_split_form">1.36. Set focus to Form in split form</a></li>
-<li><a href="#_close_all_windows_vb_editor">1.37. Close all Windows VB Editor</a></li>
+<li><a href="#_close_all_forms_and_reports">1.35. Close all forms and Reports</a></li>
+<li><a href="#_sleep_wait_timer">1.36. Sleep, wait, timer</a></li>
+<li><a href="#_set_focus_to_form_in_split_form">1.37. Set focus to Form in split form</a></li>
+<li><a href="#_close_all_windows_vb_editor">1.38. Close all Windows VB Editor</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -1096,7 +1097,7 @@ Also look at the STUFF() function.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-MS Access uses an asterisk (\*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+MS Access uses an asterisk (<code>*</code> ) instead of the percent sign (<code>%</code> ), and a question mark (<code>?</code> ) instead of the underscore (<code>_</code> ).
 </td>
 </tr>
 </table>
@@ -1107,7 +1108,7 @@ MS Access uses an asterisk (\*) instead of the percent sign (%), and a question 
 <div class="listingblock">
 <div class="title">Like UNderscore</div>
 <div class="content">
-<pre class="highlight"><code class="language-javascript" data-lang="javascript">... LIKE '%[_]d'</code></pre>
+<pre class="highlight"><code class="language-javascript" data-lang="javascript"> where something LIKE '%[_]d'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1798,7 +1799,40 @@ WHERE class = 1 --Object or column
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sleep_wait_timer">1.35. Sleep, wait, timer</h3>
+<h3 id="_close_all_forms_and_reports">1.35. Close all forms and Reports</h3>
+<div class="paragraph">
+<p>This is good to run when closing out an application</p>
+</div>
+<div class="listingblock">
+<div class="title">Close all forms</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">Sub CloseAllFormsReports()
+On Error GoTo CloseAllFormsReports_err
+
+'*--- Close all open forms
+Do While Forms.Count &gt; 0
+   DoCmd.Close acForm, Forms(0).Name
+Loop
+
+'*--- Close all open reports
+Do While Reports.Count &gt; 0
+    DoCmd.Close acReport, Reports(0).Name
+Loop
+
+
+CloseAllFormsReports_Exit:
+    Exit Sub
+
+CloseAllFormsReports_err:
+    LogError
+    Resume CloseAllFormsReports_Exit
+
+End Sub</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sleep_wait_timer">1.36. Sleep, wait, timer</h3>
 <div class="paragraph">
 <p>The Sleep in Kerel32 will cause errors on some users environment.
 This small function will do the same thing without Kernel32.</p>
@@ -1822,23 +1856,21 @@ End Function</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_set_focus_to_form_in_split_form">1.36. Set focus to Form in split form</h3>
+<h3 id="_set_focus_to_form_in_split_form">1.37. Set focus to Form in split form</h3>
 <div class="paragraph">
 <p>Since all of the data fields are both parts of the split form.  A focus to a field goes to the list on top.</p>
 </div>
 <div class="listingblock">
 <div class="title">Focus to Form in split form</div>
 <div class="content">
-<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">----gen-doco
-    '*--- TRICK to get focus into form part of split form
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">    '*--- TRICK to get focus into form part of split form
     Me.btnClose.SetFocus  '*--- Must be a button
-    Me.QueryName.SetFocus   '*--- First text field on form
-----</code></pre>
+    Me.QueryName.SetFocus   '*--- First text field on form</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_close_all_windows_vb_editor">1.37. Close all Windows VB Editor</h3>
+<h3 id="_close_all_windows_vb_editor">1.38. Close all Windows VB Editor</h3>
 <div class="paragraph">
 <p>AFter updating an application the VB editor has many windows open.
 This can affect performance and increase change of a DB fail.</p>
@@ -2569,7 +2601,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-07-06 11:05:08 -0400
+Last updated 2020-07-06 20:07:07 -0400
 </div>
 </div>
 </body>

@@ -1,6 +1,6 @@
 = Crib Sheets
 John Schuster <John.schuster@PhoenixWorkgroup.com>
-v2.1b, 02/06/2020: Crib Sheet
+v2.1e, 07/08/2020: Crib Sheet
 :Author: John HR Schuster
 :Company: Phoenix Workgroup Computing LLC
 :toc: left
@@ -978,7 +978,47 @@ Err_Handler:
 End Sub
 ----
 
+=== Close all VB Editor Windows
 
+There is not a simple Access command to close all open VBA editor windows.
+
+Here is a subrotuine that you can add to the project and then just go to where it is saved and kbd:[F5] run.
+
+
+.Close ALL VBA Editor Windows
+[source,vbscript]
+----
+Sub Close_All_VBE_Windows() 'CR v5207
+
+'// Source: https://access-programmers.co.uk/foru...
+'// Thanks to: Colin Ridders (https://access-programmers.co.uk/foru...)
+On Error GoTo Err_Handler
+
+Dim vbWin As VBIDE.Window
+
+For Each vbWin In Application.VBE.Windows
+     If (vbWin.Type = vbext_wt_CodeWindow Or _
+         vbWin.Type = vbext_wt_Designer) And _
+         Not vbWin Is Application.VBE.ActiveWindow Then
+             vbWin.Close
+     End If
+ Next
+ 
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+'CR 02/02/2016 - added error handling to fix issue in 64-bit Office
+    If err.Number = 424 Then Resume Next 'object required
+    MsgBox "Error " & err.Number & " in Close_All_VBE_Windows procedure: " & err.Description
+    Resume Exit_Handler
+
+End Sub
+----
+
+Reference: link:https://www.youtube.com/watch?v=uGES0z7eqO0[https://www.youtube.com/watch?v=uGES0z7eqO0, window='_blank']
+
+ 
 
 
 == MySQL
@@ -1525,6 +1565,7 @@ link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-line
 [cols='2,2,2,6' options='header']
 |===
 | Date  | Version | Author | Description
+| 07/08/2020 | V2.1e | JHRS | close all VBE windows
 | 06/14/2020 | V2.1d | JHRS |Charindex, isnull, Variables
 | 06/08/2020 | V2.1c | JHRS | added MySQL DBVA
 | 06/04/2020 | V2.1b | JHRS |  Initial version
