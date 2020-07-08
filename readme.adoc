@@ -1019,7 +1019,7 @@ End Sub
 Reference: link:https://www.youtube.com/watch?v=uGES0z7eqO0[https://www.youtube.com/watch?v=uGES0z7eqO0, window='_blank']
 
  
-=== Pass parameters to Form
+=== Pass parameters to Form (OpenArg)
 
 It is possible to pass parameter to a form from with the VBA OpenForm command.  This can help to reduce the number of global variables.
 

@@ -488,6 +488,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_set_focus_to_form_in_split_form">1.37. Set focus to Form in split form</a></li>
 <li><a href="#_close_all_windows_vb_editor">1.38. Close all Windows VB Editor</a></li>
 <li><a href="#_close_all_vb_editor_windows">1.39. Close all VB Editor Windows</a></li>
+<li><a href="#_pass_parameters_to_form">1.40. Pass parameters to Form</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -1954,6 +1955,116 @@ End Sub</code></pre>
 <p>Reference: <a href="https://www.youtube.com/watch?v=uGES0z7eqO0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=uGES0z7eqO0</a></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_pass_parameters_to_form">1.40. Pass parameters to Form</h3>
+<div class="paragraph">
+<p>It is possible to pass parameter to a form from with the VBA OpenForm command.  This can help to reduce the number of global variables.</p>
+</div>
+<div class="listingblock">
+<div class="title">Pass parameters to form</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">    '*--- Open edit form in ()Add) MODE
+    DoCmd.OpenForm "frmSAM_PersonalMaintenance", acNormal, , , acFormAdd, , "ADD"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example <code>"ADD"</code> is the parameter (OpenARG) being passed to the frmSAM_PersonalMaintenance form.</p>
+</div>
+<div class="paragraph">
+<p>Inside of the frmSAM_PersonalMaintenance sub here is an example of how to use the (OpenArg)</p>
+</div>
+<div class="listingblock">
+<div class="title">Use parameter in form</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">    If Me.OpenArgs = "ADD" Then <i class="conum" data-value="1"></i><b>(1)</b>
+        '*-- Set deault values
+        Me.SQLType = 1              '*--- Access sql type
+        Me.ReturnsRecords = True    '*--- Select queries
+        Me.QueryType = 16            '*--- Local Read only, not passthrough
+        Me.AccessRole = 11          '*--- Owner role
+        Me.DSN_ID = 8               '*--- Default DSN
+        Me.Category = "Private"     '*--- Private owner query
+
+        Me.CreatedBy = gsUserName
+        Me.CreatedDate = Now()
+    End If</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>me.OpenARg is the one parm being sent to form.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You could put multiple elements in the OpenArg parameter.
+By combining your values into one string separated by a character that would not be in your string, you can overcome the OpenArgs limitation and still use DoCmd to pass them. The OpenArgs parameter is a string that the form can read once it is opened. Calling the form, add the string to the OpenArgs parameter like this
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Setting Multiple Parms</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">DoCmd.OpenForm "frmName", , , , , , "cboCategory|" &amp; txtCategoryID</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Using multiple parms</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">Private Sub Form_Load()
+  Dim intPos As Integer
+  Dim strControlName As String
+  Dim strValue As String
+
+  If Len(Me.OpenArgs) &gt; 0 Then
+    ' Position of the pipe
+    intPos = InStr(Me.OpenArgs, "|")
+
+    If intPos &gt; 0 Then
+
+      ' Retrieve Control Name from the first part of the string
+      strControlName = Left$(Me.OpenArgs, intPos - 1)
+
+      ' Retrieve Value to Assign from the end of the string
+      strValue = Mid$(Me.OpenArgs, intPos + 1)
+
+      ' Assign the value to the control
+      Me(strControlName) = strValue
+
+    End If
+  End If
+End Sub</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://www.fmsinc.com/MicrosoftAccess/forms/openargs/index.htm" target="_blank" rel="noopener">https://www.fmsinc.com/MicrosoftAccess/forms/openargs/index.htm</a></p>
+</div>
+<div class="paragraph">
+<p>The following example shows how to use the OpenArgs property to prevent a form from being opened from the navigation pane.</p>
+</div>
+<div class="listingblock">
+<div class="title">OpenARg in Security</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">Private Sub Form_Open(Cancel As Integer)
+
+If Me.OpenArgs() &lt;&gt; "Valid User" Then
+    MsgBox "You are not authorized to use this form!", _
+        vbExclamation + vbOKOnly, "Invalid Access"
+    Cancel = True
+End If
+End Sub</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2651,7 +2762,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1e<br>
-Last updated 2020-07-08 13:15:20 -0400
+Last updated 2020-07-08 13:32:04 -0400
 </div>
 </div>
 </body>
