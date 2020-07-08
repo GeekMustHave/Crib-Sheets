@@ -1,8 +1,8 @@
 {
     "remotePath": "./public_html/CribSheets",
     "host": "ftp.pwc-lms.com",
-    "username": "pwclmsco",
-    "password": "TheWebStartsHere517!",
+    "username": "admin@pwc-lms.com",
+    "password": "NoMoreStupid=916!",
     "port": 21,
     "secure": false,
     "protocol": "ftp",

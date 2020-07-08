@@ -485,6 +485,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_close_form_if_it_is_open">1.34. Close form if it is open</a></li>
 <li><a href="#_sleep_wait_timer">1.35. Sleep, wait, timer</a></li>
 <li><a href="#_set_focus_to_form_in_split_form">1.36. Set focus to Form in split form</a></li>
+<li><a href="#_close_all_windows_vb_editor">1.37. Close all Windows VB Editor</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -1811,7 +1812,8 @@ TWait = Time
 TWait = DateAdd("s", n, TWait)
 Do Until TNow &gt;= TWait
      TNow = Time
-Loop
+Loopgen-doco
+
 End Function</code></pre>
 </div>
 </div>
@@ -1832,6 +1834,47 @@ End Function</code></pre>
     Me.btnClose.SetFocus  '*--- Must be a button
     Me.QueryName.SetFocus   '*--- First text field on form
 ----</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_close_all_windows_vb_editor">1.37. Close all Windows VB Editor</h3>
+<div class="paragraph">
+<p>AFter updating an application the VB editor has many windows open.
+This can affect performance and increase change of a DB fail.</p>
+</div>
+<div class="paragraph">
+<p>This code put ito a module can be run by clicking into and running it <kbd>F5</kbd>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Close all VBE windows</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript}" data-lang="vbscript}">Sub Close_All_VBE_Windows() 'CR v5207
+
+'// Source: https://access-programmers.co.uk/foru...
+'// Thanks to: Colin Ridders (https://access-programmers.co.uk/foru...)
+On Error GoTo Err_Handler
+
+Dim vbWin As VBIDE.Window
+
+For Each vbWin In Application.VBE.Windows
+     If (vbWin.Type = vbext_wt_CodeWindow Or _
+         vbWin.Type = vbext_wt_Designer) And _
+         Not vbWin Is Application.VBE.ActiveWindow Then
+             vbWin.Close
+     End If
+ Next
+
+Exit_Handler:
+    Exit Sub
+
+Err_Handler:
+'CR 02/02/2016 - added error handling to fix issue in 64-bit Office
+    If err.Number = 424 Then Resume Next 'object required
+    MsgBox "Error " &amp; err.Number &amp; " in Close_All_VBE_Windows procedure: " &amp; err.Description
+    Resume Exit_Handler
+
+End Sub</code></pre>
 </div>
 </div>
 </div>
@@ -2526,7 +2569,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1b<br>
-Last updated 2020-07-01 23:25:21 -0400
+Last updated 2020-07-06 11:05:08 -0400
 </div>
 </div>
 </body>

@@ -351,14 +351,14 @@ There are two wildcards often used in conjunction with the LIKE operator:
 
 _ - The underscore represents a single character
 
-NOTE: MS Access uses an asterisk (\*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+NOTE: MS Access uses an asterisk (`*` ) instead of the percent sign (`%` ), and a question mark (`?` ) instead of the underscore (`_` ).
 
 === SQL LIKE with Underscore
 
 .Like UNderscore
 [source,javascript]
 ----
-... LIKE '%[_]d'
+ where something LIKE '%[_]d'
 ----
 
 Source: link:https://stackoverflow.com/questions/5821/sql-server-escape-an-underscore[https://stackoverflow.com/questions/5821/sql-server-escape-an-underscore, window='_blank'/
@@ -872,6 +872,40 @@ WHERE class = 1 --Object or column
 Source: link:https://social.msdn.microsoft.com/Forums/office/en-US/6ea91117-eb79-41dd-9c98-382f0577f45e/how-do-i-test-to-see-if-a-form-is-open[https://social.msdn.microsoft.com/Forums/office/en-US/6ea91117-eb79-41dd-9c98-382f0577f45e/how-do-i-test-to-see-if-a-form-is-open, window='_blank']
 
 
+=== Close all forms and Reports
+
+This is good to run when closing out an application
+
+.Close all forms
+[source,vbscript]
+----
+Sub CloseAllFormsReports()
+On Error GoTo CloseAllFormsReports_err
+
+'*--- Close all open forms
+Do While Forms.Count > 0
+   DoCmd.Close acForm, Forms(0).Name
+Loop
+
+'*--- Close all open reports
+Do While Reports.Count > 0
+    DoCmd.Close acReport, Reports(0).Name
+Loop
+
+
+CloseAllFormsReports_Exit:
+    Exit Sub
+    
+CloseAllFormsReports_err:
+    LogError
+    Resume CloseAllFormsReports_Exit
+
+End Sub
+----
+
+
+
+
 === Sleep, wait, timer
 
 The Sleep in Kerel32 will cause errors on some users environment.
@@ -900,7 +934,7 @@ Since all of the data fields are both parts of the split form.  A focus to a fie
 
 .Focus to Form in split form
 [source,vbscript]
-----gen-doco        
+----       
     '*--- TRICK to get focus into form part of split form
     Me.btnClose.SetFocus  '*--- Must be a button
     Me.QueryName.SetFocus   '*--- First text field on form
