@@ -1019,6 +1019,98 @@ End Sub
 Reference: link:https://www.youtube.com/watch?v=uGES0z7eqO0[https://www.youtube.com/watch?v=uGES0z7eqO0, window='_blank']
 
  
+=== Pass parameters to Form
+
+It is possible to pass parameter to a form from with the VBA OpenForm command.  This can help to reduce the number of global variables.
+
+.Pass parameters to form
+[source,vbscript]
+----
+    '*--- Open edit form in ()Add) MODE
+    DoCmd.OpenForm "frmSAM_PersonalMaintenance", acNormal, , , acFormAdd, , "ADD"
+----
+
+In this example `"ADD"` is the parameter (OpenARG) being passed to the frmSAM_PersonalMaintenance form.
+
+Inside of the frmSAM_PersonalMaintenance sub here is an example of how to use the (OpenArg)
+
+.Use parameter in form
+[source,vbscript]
+----
+    If Me.OpenArgs = "ADD" Then <1>
+        '*-- Set deault values
+        Me.SQLType = 1              '*--- Access sql type
+        Me.ReturnsRecords = True    '*--- Select queries
+        Me.QueryType = 16            '*--- Local Read only, not passthrough
+        Me.AccessRole = 11          '*--- Owner role
+        Me.DSN_ID = 8               '*--- Default DSN
+        Me.Category = "Private"     '*--- Private owner query
+            
+        Me.CreatedBy = gsUserName
+        Me.CreatedDate = Now()
+    End If
+----
+<1> me.OpenARg is the one parm being sent to form.
+
+NOTE: You could put multiple elements in the OpenArg parameter.  
+By combining your values into one string separated by a character that would not be in your string, you can overcome the OpenArgs limitation and still use DoCmd to pass them. The OpenArgs parameter is a string that the form can read once it is opened. Calling the form, add the string to the OpenArgs parameter like this
+
+.Setting Multiple Parms
+[source,vbscript]
+----
+DoCmd.OpenForm "frmName", , , , , , "cboCategory|" & txtCategoryID
+----
+
+.Using multiple parms
+[source,vbscript]
+----
+Private Sub Form_Load()
+  Dim intPos As Integer
+  Dim strControlName As String
+  Dim strValue As String 
+
+  If Len(Me.OpenArgs) > 0 Then
+    ' Position of the pipe
+    intPos = InStr(Me.OpenArgs, "|")
+
+    If intPos > 0 Then
+
+      ' Retrieve Control Name from the first part of the string
+      strControlName = Left$(Me.OpenArgs, intPos - 1)
+
+      ' Retrieve Value to Assign from the end of the string
+      strValue = Mid$(Me.OpenArgs, intPos + 1)
+
+      ' Assign the value to the control
+      Me(strControlName) = strValue
+
+    End If
+  End If
+End Sub
+----
+
+Source: link:https://www.fmsinc.com/MicrosoftAccess/forms/openargs/index.htm[https://www.fmsinc.com/MicrosoftAccess/forms/openargs/index.htm, window='_blank']
+
+
+
+
+
+
+The following example shows how to use the OpenArgs property to prevent a form from being opened from the navigation pane.
+
+.OpenARg in Security
+[source,vbscript]
+----
+Private Sub Form_Open(Cancel As Integer)
+
+If Me.OpenArgs() <> "Valid User" Then
+    MsgBox "You are not authorized to use this form!", _
+        vbExclamation + vbOKOnly, "Invalid Access"
+    Cancel = True
+End If
+End Sub
+----
+
 
 
 == MySQL
