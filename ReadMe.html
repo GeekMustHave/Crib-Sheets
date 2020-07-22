@@ -490,6 +490,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_close_all_vb_editor_windows">1.39. Close all VB Editor Windows</a></li>
 <li><a href="#_pass_parameters_to_form_openarg">1.40. Pass parameters to Form (OpenArg)</a></li>
 <li><a href="#_like_operator">1.41. Like operator</a></li>
+<li><a href="#_add_microsoft_forms_library">1.42. Add Microsoft Forms Library</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -1953,8 +1954,24 @@ Err_Handler:
 End Sub</code></pre>
 </div>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>As stated in the code, add a reference to the library 'Microsoft Visual Basic for Applications Extensibility'</p>
+</li>
+<li>
+<p>After running the function, all windows will be closed except the one containing the function itself.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Alternatively, to close all ALL windows, create an Autokeys macro shortcut for this function e.g.Ctl+Shift+X</p>
+</div>
 <div class="paragraph">
 <p>Reference: <a href="https://www.youtube.com/watch?v=uGES0z7eqO0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=uGES0z7eqO0</a></p>
+</div>
+<div class="paragraph">
+<p>REFERENCE: <a href="https://www.access-programmers.co.uk/forums/threads/close-all-vbe-windows.293239/" target="_blank" rel="noopener">https://www.access-programmers.co.uk/forums/threads/close-all-vbe-windows.293239/</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -2073,6 +2090,21 @@ End Sub</code></pre>
 <h3 id="_like_operator">1.41. Like operator</h3>
 <div class="paragraph">
 <p>The 'Like' operator and wildcards are different than SQL Server</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_microsoft_forms_library">1.42. Add Microsoft Forms Library</h3>
+<div class="paragraph">
+<p>The Microsoft Forms 2.0 library needed for clipboiard functions is not listed on the Rewferences.</p>
+</div>
+<div class="paragraph">
+<p>You need to add it manually by searching for DLL 'FM20.dll'</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="./images/fm20-dll.png" alt="Missing FMDLL">
+</div>
+<div class="title">Figure 1. Missing FM20.DLL</div>
 </div>
 </div>
 </div>
@@ -2787,7 +2819,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1e<br>
-Last updated 2020-07-21 20:53:39 -0400
+Last updated 2020-07-22 14:18:16 -0400
 </div>
 </div>
 </body>

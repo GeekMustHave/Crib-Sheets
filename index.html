@@ -489,6 +489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_close_all_windows_vb_editor">1.38. Close all Windows VB Editor</a></li>
 <li><a href="#_close_all_vb_editor_windows">1.39. Close all VB Editor Windows</a></li>
 <li><a href="#_pass_parameters_to_form_openarg">1.40. Pass parameters to Form (OpenArg)</a></li>
+<li><a href="#_like_operator">1.41. Like operator</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -525,6 +526,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_adding_columns_with_nulls">3.18. Adding columns with Nulls</a></li>
 <li><a href="#_line_continuation_backslash">3.19. Line Continuation (Backslash)</a></li>
 <li><a href="#_merge_upsert">3.20. Merge (UpSert)</a></li>
+<li><a href="#_last_identity_key">3.21. Last Identity Key</a></li>
 </ul>
 </li>
 <li><a href="#_sqlite">4. SQLite</a>
@@ -2067,6 +2069,12 @@ End Sub</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_like_operator">1.41. Like operator</h3>
+<div class="paragraph">
+<p>The 'Like' operator and wildcards are different than SQL Server</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2600,6 +2608,21 @@ WHEN NOT MATCHED THEN
 <p>Source: <a href="https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/" target="_blank" rel="noopener">https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/</a></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_last_identity_key">3.21. Last Identity Key</h3>
+<div class="paragraph">
+<p>After a new row written into table with PK as a IDENTITY key how do get that Identity keys.</p>
+</div>
+<div class="paragraph">
+<div class="title">last Identity Key</div>
+<p>[source,vbscript</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>db.OpenRecordset("SELECT @@IDENTITY").Fields(0)</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2764,7 +2787,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1e<br>
-Last updated 2020-07-08 13:34:55 -0400
+Last updated 2020-07-21 20:53:39 -0400
 </div>
 </div>
 </body>
