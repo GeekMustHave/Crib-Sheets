@@ -1113,6 +1113,10 @@ End If
 End Sub
 ----
 
+=== Like operator
+
+The 'Like' operator and wildcards are different than SQL Server
+
 
 
 == MySQL
@@ -1551,6 +1555,16 @@ WHEN NOT MATCHED THEN
 
 Source: link:https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/[https://myadventuresincoding.wordpress.com/2016/01/05/sql-server-how-to-write-an-upsert-using-merge/, window='_blank']
 
+
+=== Last Identity Key
+
+After a new row written into table with PK as a IDENTITY key how do get that Identity keys.
+
+.last Identity Key
+[source,vbscript
+----
+db.OpenRecordset("SELECT @@IDENTITY").Fields(0)
+----
 
 
 
