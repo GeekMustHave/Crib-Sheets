@@ -1672,6 +1672,11 @@ End Sub
 link:https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard[https://docs.microsoft.com/en-us/office/vba/access/concepts/windows-api/send-information-to-the-clipboard, window='_blank']
 
 
+=== Current Date
+
+In MySQL the *CURDATE()* returns the current date in `YYYY-MM-DD` format or `YYYYMMDD` format depending on whether numeric or string is used in the function. 
+
+In MySQL the *CURRENT_DATE* returns the current date in `YYYY-MM-DD` format or `YYYYMMDD` format depending on whether numeric or string is used in the function.
 
 
 == Powershell
@@ -1692,6 +1697,7 @@ link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-line
 [cols='2,2,2,6' options='header']
 |===
 | Date  | Version | Author | Description
+| 07/23/2020 |v2.1f | JHRS | Added more SQL Server and MYSQL hints
 | 07/08/2020 | V2.1e | JHRS | close all VBE windows
 | 06/14/2020 | V2.1d | JHRS |Charindex, isnull, Variables
 | 06/08/2020 | V2.1c | JHRS | added MySQL DBVA
