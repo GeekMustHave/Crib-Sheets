@@ -380,7 +380,7 @@ CREATE TABLE new_table
 Source: link:https://www.techonthenet.com/sql/tables/create_table2.php[https://www.techonthenet.com/sql/tables/create_table2.php, window='_blank']
 
 
-=== C data conversion
+=== Cxxx data conversion
 
 [cols="2,2,8", options='header']
 |===
@@ -1136,6 +1136,33 @@ You need to add it manually by searching for DLL 'FM20.dll'
 .Missing FM20.DLL
 image::fm20-dll.png[Missing FM20.DLL, alt='Missing FMDLL', align='center']
  
+=== Dynamic Search
+
+As you type into a text field the results are filtered dynamically.  No additional button required.
+
+
+.Dynamic Search
+[source,vbscript]
+----
+'Apply or update filter based on user input.
+If Len(txtNameFilter.Text) > 0 Then
+   filterText = txtNameFilter.Text
+   Me.Form.Filter = "[Contacts]![first_name] LIKE '*" & filterText & "*' OR [Contacts]![last_name] LIKE '*" & filterText & "*'"
+   Me.FilterOn = True
+  'Retain filter text in search box after refresh.
+   txtNameFilter.Text = filterText
+   txtNameFilter.SelStart = Len(txtNameFilter.Text)
+Else
+   ' Remove filter.
+   Me.Filter = ""
+   Me.FilterOn = False
+   txtNameFilter.SetFocus
+End If
+----
+
+Source: link:https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/[https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/, window='_blank']
+
+
 
 
 == MySQL
