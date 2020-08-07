@@ -1162,6 +1162,44 @@ End If
 
 Source: link:https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/[https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/, window='_blank']
 
+== Dynamic Filters
+It can help to have a dynamic search filter that will enable you to easily search the records with just a few keystrokes.
+
+.Dynamic Filters
+[source,vbscript]   
+----
+Private Sub txtNameFilter_KeyUp(KeyCode As Integer, Shift As Integer)
+
+On Error GoTo errHandler
+
+Dim filterText As String
+
+'Apply or update filter based on user input.
+If Len(txtNameFilter.Text) > 0 Then
+   filterText = txtNameFilter.Text
+   Me.Form.Filter = "[Contacts]![first_name] LIKE '*" & filterText & "*' OR [Contacts]![last_name] LIKE '*" & filterText & "*'"
+   Me.FilterOn = True
+  'Retain filter text in search box after refresh. <1>
+   txtNameFilter.Text = filterText
+   txtNameFilter.SelStart = Len(txtNameFilter.Text)
+Else
+   ' Remove filter.
+   Me.Filter = ""
+   Me.FilterOn = False
+   txtNameFilter.SetFocus
+End If
+
+Exit Sub
+
+errHandler:
+
+MsgBox Err.Number & " - " & Err.Description, vbOKOnly, "Error ..."
+
+End Sub
+----
+<1> The reason for this is that, in this example, the search box is placed on the same form as the records that are being filtered.  When the filter is applied, the form is requeried and the search box is blanked since it’s not bound to anything. The lines above were my solution for retaining the search value.  The contents of the variable are placed back in the search box and the next line places the cursor at the end of the text in the box so that when the user hit’s another key, the search text is edited appropriately.
+
+
 
 
 
@@ -1478,11 +1516,11 @@ you could instead parameterize the query and turn it into a stored procedure lik
 
 ----
 create procedure getSalesperson
-@sp varchar(25)
+@sp varchar(25) <1>
 as
 select SalesPerson, Mon, amount
 from SalesData
-where SalesPerson = @sp;
+where SalesPerson = @sp; <2>
 Go
 
 -- Run the SP
@@ -1490,6 +1528,8 @@ declare @sp varchar(25)
 set @sp = 'Jack'
 exec getSalesperson @sp
 ----
+<1> Parameter named (sp) defined
+<2> Parameter used>
 
 link:https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server-queries-and-stored-procedures/[https://www.mssqltips.com/sqlservertip/2981/using-parameters-for-sql-server-queries-and-stored-procedures/, window='_blank']
 
@@ -1612,7 +1652,13 @@ After a new row written into table with PK as a IDENTITY key how do get that Ide
 db.OpenRecordset("SELECT @@IDENTITY").Fields(0)
 ----
 
+=== IFNULL()
 
+Return the specified value IF the expression is NULL, otherwise return the expression:
+
+----
+SELECT ISNULL(NULL, 'W3Schools.com');
+----
 
 == SQLite
 
@@ -1724,6 +1770,7 @@ link:https://stackoverflow.com/questions/28908638/extract-only-the-first-10-line
 [cols='2,2,2,6' options='header']
 |===
 | Date  | Version | Author | Description
+| 08/03/2020 | 2.1g | JHRS | Access bookmark
 | 07/23/2020 |v2.1f | JHRS | Added more SQL Server and MYSQL hints
 | 07/08/2020 | V2.1e | JHRS | close all VBE windows
 | 06/14/2020 | V2.1d | JHRS |Charindex, isnull, Variables

@@ -461,7 +461,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_sql_like">1.10. SQL LIKE</a></li>
 <li><a href="#_sql_like_with_underscore">1.11. SQL LIKE with Underscore</a></li>
 <li><a href="#_create_table">1.12. Create Table</a></li>
-<li><a href="#_c_data_conversion">1.13. C data conversion</a></li>
+<li><a href="#_cxxx_data_conversion">1.13. Cxxx data conversion</a></li>
 <li><a href="#_creating_user_properties_tables_queries">1.14. Creating User Properties (Tables / Queries)</a></li>
 <li><a href="#_turn_off_datasheet_sortfilter">1.15. Turn off datasheet Sort/Filter</a></li>
 <li><a href="#_determine_the_current_object">1.16. Determine the Current Object</a></li>
@@ -491,6 +491,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_pass_parameters_to_form_openarg">1.40. Pass parameters to Form (OpenArg)</a></li>
 <li><a href="#_like_operator">1.41. Like operator</a></li>
 <li><a href="#_add_microsoft_forms_library">1.42. Add Microsoft Forms Library</a></li>
+<li><a href="#_dynamic_search">1.43. Dynamic Search</a></li>
 </ul>
 </li>
 <li><a href="#_mysql">2. MySQL</a>
@@ -1144,7 +1145,7 @@ The syntax for the CREATE TABLE AS statement when copying all of the columns in 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_c_data_conversion">1.13. C data conversion</h3>
+<h3 id="_cxxx_data_conversion">1.13. Cxxx data conversion</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -2108,6 +2109,34 @@ End Sub</code></pre>
 <div class="title">Figure 1. Missing FM20.DLL</div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_dynamic_search">1.43. Dynamic Search</h3>
+<div class="paragraph">
+<p>As you type into a text field the results are filtered dynamically.  No additional button required.</p>
+</div>
+<div class="listingblock">
+<div class="title">Dynamic Search</div>
+<div class="content">
+<pre class="highlight"><code class="language-vbscript" data-lang="vbscript">'Apply or update filter based on user input.
+If Len(txtNameFilter.Text) &gt; 0 Then
+   filterText = txtNameFilter.Text
+   Me.Form.Filter = "[Contacts]![first_name] LIKE '*" &amp; filterText &amp; "*' OR [Contacts]![last_name] LIKE '*" &amp; filterText &amp; "*'"
+   Me.FilterOn = True
+  'Retain filter text in search box after refresh.
+   txtNameFilter.Text = filterText
+   txtNameFilter.SelStart = Len(txtNameFilter.Text)
+Else
+   ' Remove filter.
+   Me.Filter = ""
+   Me.FilterOn = False
+   txtNameFilter.SetFocus
+End If</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/" target="_blank" rel="noopener">https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2835,7 +2864,7 @@ End Sub</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.1e<br>
-Last updated 2020-07-23 14:20:38 -0400
+Last updated 2020-07-30 14:35:27 -0400
 </div>
 </div>
 </body>
