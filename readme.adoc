@@ -1200,6 +1200,7 @@ End Sub
 <1> The reason for this is that, in this example, the search box is placed on the same form as the records that are being filtered.  When the filter is applied, the form is requeried and the search box is blanked since it’s not bound to anything. The lines above were my solution for retaining the search value.  The contents of the variable are placed back in the search box and the next line places the cursor at the end of the text in the box so that when the user hit’s another key, the search text is edited appropriately.
 
 
+Source: link:https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/[https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/, window='_blank']
 
 
 
