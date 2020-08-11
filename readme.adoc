@@ -1201,7 +1201,22 @@ End Sub
 
 
 Source: link:https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/[https://www.comeausoftware.com/2019/01/create-dynamic-search-filter-microsoft-access/, window='_blank']
+ 
+=== Refresh a SubForm
 
+17
+
+You must use the name of the subform control, not the name of the subform, though these are often the same:
+
+.Refresh SubForm
+[source,vbscript]
+----
+Forms![MainForm]![subform control name Name].Form.Requery
+----
+
+Source: link:https://stackoverflow.com/questions/1929219/requery-a-subform-from-another-form[https://stackoverflow.com/questions/1929219/requery-a-subform-from-another-form, window='_blank']
+
+Source: link:http://www.mvps.org/access/forms/frm0031.htm[http://www.mvps.org/access/forms/frm0031.htm, window='_blank']
 
 
 == MySQL
